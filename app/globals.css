@@ -3,11 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
+  --cream: #faf7f2;
+  --cream-strong: #f4efe6;
+  --navy: #0b1b33;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-cream-strong: var(--cream-strong);
+  --color-navy: var(--navy);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -21,4 +27,15 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle dotted texture used on dark navy sections */
+.bg-grid-dots {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
 }

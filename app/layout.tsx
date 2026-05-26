@@ -13,9 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Martin Web Works — Websites for Local Businesses",
+  title:
+    "Martin Web Works — Websites for local businesses, built, hosted, and managed for you",
   description:
-    "Martin Web Works builds modern, mobile-friendly websites for contractors, service businesses, and local professionals — designed to win calls, quote requests, and trust.",
+    "Martin Web Works helps service businesses and local professionals get a modern website that looks trustworthy, works on mobile, captures leads, and stays supported after launch.",
 };
 
 export default function RootLayout({
@@ -28,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
         {children}
       </body>
     </html>
