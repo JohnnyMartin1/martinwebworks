@@ -1,41 +1,239 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Design tokens (canonical: hex; OKLCH reference in DESIGN.md).
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --cream: #faf7f2;
-  --cream-strong: #f4efe6;
-  --navy: #0b1b33;
+  /* Ink + cream */
+  --ink-navy: #0b1b33;
+  --ink-navy-deep: #06122a;
+  --cream-paper: #faf7f2;
+  --cream-deep: #f4efe6;
+  --cream-edge: #ece4d3;
+  --paper-white: #ffffff;
+
+  /* Signal blue (the stamp) */
+  --signal-blue: #1e40af;
+  --signal-blue-deep: #1e3a8a;
+  --signal-blue-soft: #e6ecff;
+
+  /* Warm ash */
+  --warm-ash: #475569;
+  --warm-ash-soft: #94a3b8;
+  --divider: #e6e0d3;
+
+  /* State */
+  --alert-rose: #e11d48;
+  --alert-rose-soft: #fde8ec;
+  --success-emerald: #10b981;
+  --success-emerald-soft: #dcfce7;
+
+  /* Elevation */
+  --shadow-paper-rest: 0 1px 0 rgba(11, 27, 51, 0.04), 0 8px 24px -16px rgba(11, 27, 51, 0.08);
+  --shadow-paper-hover: 0 2px 0 rgba(11, 27, 51, 0.06), 0 18px 36px -16px rgba(11, 27, 51, 0.12);
+  --shadow-cta-lift: 0 1px 0 rgba(11, 27, 51, 0.16), 0 12px 24px -10px rgba(11, 27, 51, 0.18);
+  --shadow-cta-hover: 0 2px 0 rgba(11, 27, 51, 0.22), 0 18px 36px -10px rgba(11, 27, 51, 0.24);
+  --shadow-nav-stick: 0 1px 0 rgba(11, 27, 51, 0.06);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-snap: 120ms;
+  --duration-smooth: 200ms;
+  --duration-page: 320ms;
+
+  /* Layout */
+  --measure-body: 65ch;
+  --measure-narrow: 58ch;
+  --header-h-mobile: 56px;
+  --header-h-desktop: 64px;
 }
 
+/* Tailwind v4 theme inline so utilities resolve to our tokens. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-cream: var(--cream);
-  --color-cream-strong: var(--cream-strong);
-  --color-navy: var(--navy);
+  /* Brand color palette */
+  --color-ink: var(--ink-navy);
+  --color-ink-deep: var(--ink-navy-deep);
+  --color-cream: var(--cream-paper);
+  --color-cream-deep: var(--cream-deep);
+  --color-cream-edge: var(--cream-edge);
+  --color-paper: var(--paper-white);
+  --color-signal: var(--signal-blue);
+  --color-signal-deep: var(--signal-blue-deep);
+  --color-signal-soft: var(--signal-blue-soft);
+  --color-ash: var(--warm-ash);
+  --color-ash-soft: var(--warm-ash-soft);
+  --color-divider: var(--divider);
+  --color-rose: var(--alert-rose);
+  --color-rose-soft: var(--alert-rose-soft);
+  --color-emerald: var(--success-emerald);
+  --color-emerald-soft: var(--success-emerald-soft);
+
+  --color-background: var(--cream-paper);
+  --color-foreground: var(--ink-navy);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ============================================================
+   Base
+   ============================================================ */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--cream-paper);
+  color: var(--ink-navy);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Subtle dotted texture used on dark navy sections */
-.bg-grid-dots {
+::selection {
+  background: var(--signal-blue-soft);
+  color: var(--ink-navy-deep);
+}
+
+/* Focus ring (Signal Blue, the stamp). */
+:focus-visible {
+  outline: 2px solid var(--signal-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Typographic scale (named utilities)
+   ============================================================ */
+.t-display {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 4vw + 1rem, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+.t-headline {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.875rem, 2vw + 1rem, 2.625rem);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+}
+.t-title {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.t-lead {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  color: var(--warm-ash);
+  max-width: var(--measure-body);
+}
+.t-body {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: var(--measure-body);
+}
+.t-caption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--warm-ash);
+}
+.t-label {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warm-ash);
+}
+.t-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  color: var(--warm-ash);
+}
+
+/* ============================================================
+   Elevation utilities
+   ============================================================ */
+.shadow-paper {
+  box-shadow: var(--shadow-paper-rest);
+}
+.shadow-paper-hover {
+  box-shadow: var(--shadow-paper-hover);
+}
+.shadow-cta {
+  box-shadow: var(--shadow-cta-lift);
+}
+.shadow-cta-hover {
+  box-shadow: var(--shadow-cta-hover);
+}
+
+/* ============================================================
+   Drench section (Ink Navy)
+   ============================================================ */
+.drench-navy {
+  background: var(--ink-navy);
+  color: var(--cream-paper);
+  position: relative;
+  isolation: isolate;
+}
+.drench-navy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    50% 70% at 70% 0%,
+    rgba(30, 64, 175, 0.08),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+/* Quiet ink-tinted grid for drench, optional decorative cue. */
+.bg-paper-grid {
   background-image: radial-gradient(
     circle at 1px 1px,
-    rgba(255, 255, 255, 0.06) 1px,
+    rgba(11, 27, 51, 0.05) 1px,
     transparent 0
   );
-  background-size: 22px 22px;
+  background-size: 28px 28px;
+}
+
+/* Hairline above a section, used as soft separator on cream. */
+.hairline-top {
+  border-top: 1px solid var(--divider);
+}
+.hairline-bottom {
+  border-bottom: 1px solid var(--divider);
+}
+
+/* ============================================================
+   Reduce motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

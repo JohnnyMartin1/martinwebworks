@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-27T11:10:00Z",
+  "title": "Design System: Martin Web Works",
+  "extensions": {
+    "colorMeta": {
+      "ink-navy": {
+        "role": "primary",
+        "displayName": "Ink Navy",
+        "canonical": "oklch(22% 0.04 260)",
+        "tonalRamp": ["#06122a", "#0b1b33", "#162a47", "#22395f", "#365178", "#5d7297", "#a3b1c4", "#cdd5e0"]
+      },
+      "signal-blue": {
+        "role": "secondary",
+        "displayName": "Signal Blue",
+        "canonical": "oklch(42% 0.18 264)",
+        "tonalRamp": ["#0e1f56", "#15296d", "#1e3a8a", "#1e40af", "#2d50c7", "#5777de", "#8ea2eb", "#e6ecff"]
+      },
+      "cream-paper": {
+        "role": "neutral",
+        "displayName": "Cream Paper",
+        "canonical": "oklch(97% 0.012 75)",
+        "tonalRamp": ["#3a342a", "#5a5043", "#7e7363", "#a39a8a", "#cfc6b3", "#ece4d3", "#f4efe6", "#faf7f2"]
+      },
+      "warm-ash": {
+        "role": "neutral",
+        "displayName": "Warm Ash",
+        "canonical": "oklch(52% 0.02 250)",
+        "tonalRamp": ["#1f2937", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9"]
+      },
+      "alert-rose": {
+        "role": "tertiary",
+        "displayName": "Alert Rose",
+        "canonical": "oklch(60% 0.22 16)",
+        "tonalRamp": ["#7c1132", "#9f1a3d", "#c4174a", "#e11d48", "#f43f5e", "#fb7185", "#fda4af", "#fde8ec"]
+      },
+      "success-emerald": {
+        "role": "tertiary",
+        "displayName": "Success Emerald",
+        "canonical": "oklch(68% 0.16 152)",
+        "tonalRamp": ["#0a3b25", "#0d5a35", "#10b981", "#34d399", "#6ee7b7", "#a7f3d0", "#bbf7d0", "#dcfce7"]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Cream Divider",
+        "canonical": "oklch(91% 0.012 80)",
+        "tonalRamp": ["#3a342a", "#5a5043", "#7e7363", "#a39a8a", "#cfc6b3", "#e6e0d3", "#f4efe6", "#faf7f2"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page hero headlines only. One per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings within a page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles, plan names, feature category headers."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default running text. Max measure 65ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "All-caps tracked labels. Used at most twice per page."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Small status text inside browser/site mockups only."
+      }
+    },
+    "shadows": [
+      { "name": "paper-rest", "value": "0 1px 0 rgba(11,27,51,0.04), 0 8px 24px -16px rgba(11,27,51,0.08)", "purpose": "Default card on cream. The 1px line reads as paper edge." },
+      { "name": "paper-hover", "value": "0 2px 0 rgba(11,27,51,0.06), 0 18px 36px -16px rgba(11,27,51,0.12)", "purpose": "Interactive cards on hover. Non-interactive cards never animate." },
+      { "name": "cta-lift", "value": "0 1px 0 rgba(11,27,51,0.16), 0 12px 24px -10px rgba(11,27,51,0.18)", "purpose": "Primary button rest. The only meaningful shadow on cream." },
+      { "name": "nav-stick", "value": "0 1px 0 rgba(11,27,51,0.06)", "purpose": "Bottom edge of sticky header." }
+    ],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Default easing for state transitions. No bounce." },
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Slightly more expressive entrances when needed." },
+      { "name": "duration-snap", "value": "120ms", "purpose": "Color and opacity state changes." },
+      { "name": "duration-smooth", "value": "200ms", "purpose": "Shadow lifts and transforms." },
+      { "name": "duration-page", "value": "320ms", "purpose": "Filter reflows on the examples grid." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The primary CTA. Book Free Website Audit. Same shape, same color, every page.",
+      "html": "<button class=\"ds-btn-primary\">Book Free Website Audit</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #0b1b33; color: #faf7f2; font-family: Geist, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; padding: 14px 22px; border-radius: 9999px; border: none; cursor: pointer; box-shadow: 0 1px 0 rgba(11,27,51,0.16), 0 12px 24px -10px rgba(11,27,51,0.18); transition: background 120ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 200ms cubic-bezier(0.25, 1, 0.5, 1), transform 200ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-btn-primary:hover { background: #06122a; box-shadow: 0 2px 0 rgba(11,27,51,0.22), 0 18px 36px -10px rgba(11,27,51,0.24); transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #1e40af; outline-offset: 2px; } .ds-btn-primary:active { transform: translateY(0); box-shadow: 0 1px 0 rgba(11,27,51,0.16), 0 6px 12px -6px rgba(11,27,51,0.18); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary CTA on a cream surface. View Packages, See Examples.",
+      "html": "<button class=\"ds-btn-secondary\">View Packages</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: #ffffff; color: #0b1b33; font-family: Geist, system-ui, sans-serif; font-weight: 600; font-size: 0.9375rem; padding: 14px 22px; border-radius: 9999px; border: 1px solid #e6e0d3; cursor: pointer; transition: background 120ms cubic-bezier(0.25, 1, 0.5, 1), border-color 120ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-btn-secondary:hover { background: #f4efe6; border-color: #cfc6b3; } .ds-btn-secondary:focus-visible { outline: 2px solid #1e40af; outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Industry filter on /examples. Toggle pattern.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"false\">Roofers</button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; background: #ffffff; color: #0b1b33; font-family: Geist, system-ui, sans-serif; font-weight: 500; font-size: 0.875rem; padding: 8px 14px; border-radius: 9999px; border: 1px solid #e6e0d3; cursor: pointer; transition: background 120ms cubic-bezier(0.25, 1, 0.5, 1), color 120ms cubic-bezier(0.25, 1, 0.5, 1), border-color 120ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-chip:hover { background: #f4efe6; } .ds-chip[aria-pressed=\"true\"] { background: #0b1b33; color: #faf7f2; border-color: #0b1b33; } .ds-chip:focus-visible { outline: 2px solid #1e40af; outline-offset: 2px; }"
+    },
+    {
+      "name": "Paper Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Default card on cream surfaces. A sheet of paper laid down.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-title\">Card title</h3><p class=\"ds-card-body\">Card supporting text on a paper card.</p></article>",
+      "css": ".ds-card { background: #ffffff; color: #0b1b33; border: 1px solid #e6e0d3; border-radius: 14px; padding: 28px; box-shadow: 0 1px 0 rgba(11,27,51,0.04), 0 8px 24px -16px rgba(11,27,51,0.08); } .ds-card-title { font-family: Geist, system-ui, sans-serif; font-weight: 600; font-size: 1.25rem; line-height: 1.3; letter-spacing: -0.01em; margin: 0; } .ds-card-body { font-family: Geist, system-ui, sans-serif; font-weight: 400; font-size: 1rem; line-height: 1.6; color: #475569; margin: 12px 0 0; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Audit form field. Label above input.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Website URL</span><input class=\"ds-input\" type=\"url\" placeholder=\"https://yourbusiness.com\" /></label>",
+      "css": ".ds-field { display: block; } .ds-field-label { display: block; font-family: Geist, system-ui, sans-serif; font-weight: 500; font-size: 0.875rem; color: #475569; margin-bottom: 8px; } .ds-input { display: block; width: 100%; background: #ffffff; color: #0b1b33; font-family: Geist, system-ui, sans-serif; font-weight: 400; font-size: 1rem; padding: 12px 14px; border-radius: 10px; border: 1px solid #e6e0d3; transition: border-color 120ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 120ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-input::placeholder { color: #94a3b8; } .ds-input:focus-visible { outline: none; border-color: #1e40af; box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.12); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Top navigation link. Active route gets an underbar in signal blue.",
+      "html": "<a class=\"ds-nav-link\" href=\"/packages\">Packages</a> <a class=\"ds-nav-link ds-nav-link--active\" href=\"/services\">Services</a>",
+      "css": ".ds-nav-link { position: relative; display: inline-flex; align-items: center; padding: 10px 12px; font-family: Geist, system-ui, sans-serif; font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: #475569; text-decoration: none; transition: color 120ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-nav-link:hover { color: #0b1b33; } .ds-nav-link--active { color: #0b1b33; } .ds-nav-link--active::after { content: \"\"; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; background: #1e40af; border-radius: 1px; }"
+    },
+    {
+      "name": "Lead Notification Mockup",
+      "kind": "custom",
+      "refersTo": "mockup-lead-notification",
+      "description": "The studio's signature floating card. A small proof-of-system artifact on the homepage hero.",
+      "html": "<aside class=\"ds-lead-notif\"><span class=\"ds-lead-icon\"><svg viewBox=\"0 0 20 20\" width=\"14\" height=\"14\" fill=\"none\"><path d=\"M5 8a5 5 0 0110 0v3l1.2 2.4a.6.6 0 01-.5.9H4.3a.6.6 0 01-.5-.9L5 11V8z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><path d=\"M8 15.5a2 2 0 004 0\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg></span><div class=\"ds-lead-meta\"><p class=\"ds-lead-label\">New quote request</p><p class=\"ds-lead-name\">Sarah K. Kitchen remodel</p><p class=\"ds-lead-time\">2 minutes ago</p></div></aside>",
+      "css": ".ds-lead-notif { display: flex; align-items: flex-start; gap: 12px; max-width: 224px; background: #ffffff; border: 1px solid #e6e0d3; border-radius: 14px; padding: 14px; box-shadow: 0 1px 0 rgba(11,27,51,0.04), 0 18px 36px -16px rgba(11,27,51,0.16); font-family: Geist, system-ui, sans-serif; } .ds-lead-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; background: #dcfce7; color: #047857; flex-shrink: 0; } .ds-lead-meta { display: flex; flex-direction: column; gap: 2px; } .ds-lead-label { margin: 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #047857; } .ds-lead-name { margin: 0; font-size: 0.875rem; font-weight: 600; color: #0b1b33; } .ds-lead-time { margin: 0; font-size: 0.75rem; color: #94a3b8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Paper Atelier",
+    "overview": "A small, deliberate web studio that feels like quality stationery: a cream paper background, ink-dark typography, a single confident blue used the way a notary stamps a contract. Premium and practical at the same time. The visual world is the bay window of a craftsman's workshop, not the lobby of a software company. This system explicitly rejects the AI-generated SaaS landing page reflex: cream-and-purple gradients, identical icon card grids, repeated all-caps eyebrow pills above every heading, glassy translucent panels. It also rejects the editorial-magazine aesthetic (Fraunces italic, mono uppercase labels, three-column ruled grids), which would feel wrong to a roofer scrolling on a phone at 7 a.m. The studio is precise but not refined into preciousness.",
+    "keyCharacteristics": [
+      "Cream paper background, dark navy text, one signal blue used sparingly.",
+      "One typographic family (Geist) carries the entire system. Discipline of weight and size, not variety of family.",
+      "Two committed-navy 'drench' moments per page maximum. Used as voice, not wallpaper.",
+      "Each page has its own dominant layout shape. No two routes share the same composition.",
+      "Real component library, real reusable primitives, no per-section copy-paste."
+    ],
+    "rules": [
+      { "name": "The One Stamp Rule", "body": "Signal Blue covers at most 10% of any page. Its rarity is the point. If a page reads as 'blue,' it has failed.", "section": "colors" },
+      { "name": "The Two Drench Moments Rule", "body": "Ink Navy as a section background appears at most twice on any page.", "section": "colors" },
+      { "name": "The Warm Neutral Rule", "body": "Pure #000 and pure #fff are forbidden as text colors. Every neutral is tinted toward cream or navy.", "section": "colors" },
+      { "name": "The Single Family Rule", "body": "Geist carries the entire system. Distinction comes from weight and size, not from introducing a second family.", "section": "typography" },
+      { "name": "The Quiet Eyebrow Rule", "body": "All-caps tracked labels appear at most twice in the entire site. They are not section grammar.", "section": "typography" },
+      { "name": "The Lead Paragraph Rule", "body": "Below the Display headline on each page, exactly one lead paragraph at Body Lead size.", "section": "typography" },
+      { "name": "The 65-Character Rule", "body": "Body copy never exceeds 65ch width.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Shadows belong to the primary CTA and interactive cards only.", "section": "elevation" },
+      { "name": "The No-Glow Rule", "body": "No colored shadows of any kind. Shadows are tinted with Ink Navy at low opacity.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep all-caps tracked labels (Label typography) to at most two appearances per page, and at most two pages in the entire site.",
+      "Do vary section layouts: split hero, comparison table, timeline, filter grid, accordion, drench band.",
+      "Do keep body copy width to 65ch on desktop and 58ch where reading rhythm matters.",
+      "Do put the primary CTA (Book Free Website Audit) in the same visual position on every page and the same color (Ink Navy pill).",
+      "Do tint every neutral toward cream or navy. Never use #000 or #fff as text.",
+      "Do label every concept example as 'Concept example,' visibly, twice.",
+      "Do show pricing on /packages above the fold on desktop, full table comparison below.",
+      "Do keep mobile CTAs to single-column, full-width, 14px+ tap padding."
+    ],
+    "donts": [
+      "Don't use em dashes anywhere.",
+      "Don't put an all-caps blue eyebrow pill above every section heading.",
+      "Don't repeat the 'icon + heading + 2 lines, six cards in a grid' pattern.",
+      "Don't use decorative gradients, glassmorphism, animated blobs, or floating particles.",
+      "Don't use side-stripe borders greater than 1px on cards, list items, or callouts.",
+      "Don't use gradient text.",
+      "Don't invent fake testimonials, fake client logos, fake metric badges, or AI-generated faces.",
+      "Don't put modals anywhere on this site.",
+      "Don't write the words: transform, unlock, seamless, innovative, cutting-edge, enterprise-grade, we leverage, world-class, best-in-class, industry-leading.",
+      "Don't use Inter, DM Sans, Plus Jakarta, Instrument, Plex, Outfit, or any other reflex-reject sans.",
+      "Don't add a second font family without a written reason in DESIGN.md.",
+      "Don't use blue as a background on a section larger than a small banner.",
+      "Don't animate width, height, padding, margin, top, left, or any other layout property."
+    ]
+  }
+}

@@ -1,22 +1,56 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/app/components/site/SiteHeader";
+import { SiteFooter } from "@/app/components/site/SiteFooter";
+import { MobileStickyCTA } from "@/app/components/site/MobileStickyCTA";
+import { Analytics } from "@/app/components/site/Analytics";
+import { SITE } from "@/app/data/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title:
-    "Martin Web Works — Websites for local businesses, built, hosted, and managed for you",
-  description:
-    "Martin Web Works helps service businesses and local professionals get a modern website that looks trustworthy, works on mobile, captures leads, and stays supported after launch.",
+  metadataBase: new URL("https://martinwebworks.com"),
+  title: {
+    default: `${SITE.name} — Websites for local businesses`,
+    template: `%s · ${SITE.name}`,
+  },
+  description: SITE.description,
+  applicationName: SITE.name,
+  openGraph: {
+    title: `${SITE.name} — Websites for local businesses`,
+    description: SITE.description,
+    url: "/",
+    siteName: SITE.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — Websites for local businesses`,
+    description: SITE.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  // Google Search Console verification.
+  // TODO: replace the empty string with the meta token Search Console issues
+  // after the property is added. Until then this stays empty and no tag is
+  // emitted.
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +62,22 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-blue-900">
-        {children}
+      <body className="min-h-full flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-[var(--ink-navy)] focus:px-4 focus:py-2 focus:text-sm focus:text-[var(--cream-paper)]"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+        <MobileStickyCTA />
+        <Analytics />
       </body>
     </html>
   );
