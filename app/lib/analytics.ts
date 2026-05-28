@@ -19,7 +19,8 @@ export type AnalyticsEventName =
   | "cta_click_phone"
   | "cta_click_mobile_sticky"
   | "cta_click_view_packages"
-  | "scheduling_click";
+  | "scheduling_click"
+  | "free_audit_page_scheduling_click";
 
 declare global {
   interface Window {

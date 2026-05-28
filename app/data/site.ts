@@ -32,19 +32,36 @@ export const HAS_PHONE = PHONE_NUMBER.length > 0 && PHONE_HREF.length > 0;
 /**
  * Scheduling URL.
  *
- * Leave this empty until a real calendar is ready. While empty, every
- * "Book Free Website Audit" CTA on the site routes to /free-audit and the
- * Free Audit form is the only intake path.
+ * Read from `NEXT_PUBLIC_SCHEDULING_URL` so the value is available to both
+ * server and client components. Set it in `.env.local` (and in your hosting
+ * environment) when a real calendar is ready, e.g.
+ *   NEXT_PUBLIC_SCHEDULING_URL=https://cal.com/martinwebworks/free-audit
  *
- * To enable calendar booking later, set this to a real Calendly / Cal.com URL,
- * for example: `"https://cal.com/martinwebworks/audit"`.
+ * When unset (empty string), the site keeps `/free-audit` as the only intake
+ * path and never renders a broken scheduling link.
  *
- * TODO: replace with the real scheduling link once warmup and verification
- * are complete (see EMAIL_SETUP.md).
- *
- * The helpers below handle internal vs external link behavior automatically.
+ * Notes:
+ *   - `BOOK_AUDIT_HREF` is what every "Book Free Audit" button points to.
+ *     We deliberately keep this as `/free-audit` (the hub) even when a
+ *     scheduling link is configured — the /free-audit page then offers
+ *     scheduling + the form side-by-side. Direct scheduling links use
+ *     `SCHEDULING_URL` / `HAS_SCHEDULING` directly.
+ *   - Trimmed, https-only validation prevents accidental local-file leaks.
  */
-export const SCHEDULING_URL = "";
+const RAW_SCHEDULING_URL =
+  (process.env.NEXT_PUBLIC_SCHEDULING_URL ?? "").trim();
 
-export const BOOK_AUDIT_HREF = SCHEDULING_URL || "/free-audit";
-export const BOOK_AUDIT_IS_EXTERNAL = SCHEDULING_URL.length > 0;
+export const SCHEDULING_URL: string = /^https?:\/\//i.test(RAW_SCHEDULING_URL)
+  ? RAW_SCHEDULING_URL
+  : "";
+
+export const HAS_SCHEDULING = SCHEDULING_URL.length > 0;
+
+/**
+ * Where every "Book Free Audit" CTA on the site lives. Keep this internal
+ * so the visitor lands on the /free-audit hub, which itself presents the
+ * scheduling option + the form. This is the recommended pattern from
+ * marketing teams that A/B-tested direct-to-calendar vs hub-first.
+ */
+export const BOOK_AUDIT_HREF = "/free-audit";
+export const BOOK_AUDIT_IS_EXTERNAL = false;

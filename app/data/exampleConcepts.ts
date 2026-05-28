@@ -34,10 +34,27 @@ export type ConceptFeature = {
   note?: string;
 };
 
+/**
+ * Visual + interactive variant key. The /examples/[slug] page uses this to:
+ *   - pick the industry-specific ConceptHomeMockup
+ *   - pick the BookingMockup variant
+ *   - pick the AssistantDemo scenario id
+ *
+ * Keep this in sync with:
+ *   - ConceptHomeMockup `variant` prop
+ *   - BookingMockup `variant` prop
+ *   - AssistantDemo scenario `id`
+ */
+export type ConceptVariant = "roofing" | "medSpa" | "lawFirm";
+
 export type ExampleConcept = {
   slug: string;
   /** ExampleBusiness slug used for palette + identity reuse. */
   baseSlug: ExampleBusiness["slug"];
+  /** Drives mockup, booking, and assistant variants. */
+  variant: ConceptVariant;
+  /** Scenario id passed to AssistantDemo's scenario picker. */
+  assistantScenarioId: string;
   /** Display name for headlines, e.g. "Roofing website". */
   industryLabel: string;
   industryShort: string;
@@ -74,6 +91,8 @@ export type ExampleConcept = {
 const ROOFING: ExampleConcept = {
   slug: "roofing-website-concept",
   baseSlug: "summit-ridge-roofing",
+  variant: "roofing",
+  assistantScenarioId: "roofing",
   industryLabel: "Roofing website",
   industryShort: "roofers",
   hero: {
@@ -205,37 +224,40 @@ const ROOFING: ExampleConcept = {
   },
 };
 
-const DENTAL: ExampleConcept = {
-  slug: "dental-website-concept",
-  baseSlug: "lumen-dental",
-  industryLabel: "Dental website",
-  industryShort: "dentists",
+const MED_SPA: ExampleConcept = {
+  slug: "med-spa-website-concept",
+  baseSlug: "luma-aesthetics",
+  variant: "medSpa",
+  assistantScenarioId: "med-spa",
+  industryLabel: "Med spa website",
+  industryShort: "med spas",
   hero: {
     eyebrow: "Concept example · Not a real client",
-    headline: "A dental website that books new patients without the brochure.",
-    lead: "Patients researching a new dentist are skimming for three things: do you take my insurance, can I book online, and does the practice look clean and current. This concept answers all three above the fold.",
+    headline:
+      "A med spa website built for treatment education, consultations, and online booking.",
+    lead: "First-time med spa guests are not browsing — they are deciding whether to trust an injector or aesthetician with their face. This concept leads with education, makes consultations the obvious next step, and removes the friction between curiosity and a booked appointment.",
     primaryCtaInPage: "Book Free Website Audit",
-    siteTagline: "Modern dental care, transparently priced.",
-    siteCta: "Book a new-patient visit",
-    services: ["Cleanings", "Cosmetic", "Restorative"],
+    siteTagline: "Premium aesthetics, calmly explained.",
+    siteCta: "Book a consultation",
+    services: ["Injectables", "Facials", "Body"],
   },
   sections: [
     {
       eyebrow: "Hero",
-      title: "Insurance, booking, and a calm visual register.",
-      body: "The hero pairs a quiet, current visual register with one CTA: book a new-patient visit. Insurance carriers and a short ‘what to expect’ note live in the upper third — no scrolling required to answer the most common patient question.",
+      title: "Calm, clinical, and consultation-first.",
+      body: "The hero pairs a quiet visual register with one CTA: book a consultation. Provider names, a short ‘what to expect on your first visit’ note, and a confidential intake live in the upper third — no scrolling required to answer the questions a first-time guest is about to ask.",
       highlights: [
-        "Insurance carriers shown above the fold",
-        "Single primary CTA: book a visit",
+        "Provider names visible above the fold",
+        "Single primary CTA: book a consultation",
         "‘What to expect’ note for first-time guests",
       ],
     },
     {
-      eyebrow: "Procedures",
-      title: "Procedure pages with pricing transparency.",
-      body: "Cleanings, cosmetic, restorative, emergency. Each page lists what the visit covers, typical pricing without insurance, and the team member who performs it. Patients self-qualify before booking.",
+      eyebrow: "Treatments",
+      title: "Treatment pages that educate before they sell.",
+      body: "Injectables, facials, laser, body. Each page explains the treatment, the typical timeline, who performs it, and the conservative pricing window. Guests self-qualify before they ever touch the booking widget.",
       highlights: [
-        "Per-procedure page with pricing",
+        "Per-treatment page with plain-English explanation",
         "‘Who performs this’ shown clearly",
         "Recovery time and aftercare answered",
       ],
@@ -243,7 +265,7 @@ const DENTAL: ExampleConcept = {
     {
       eyebrow: "Booking",
       title: "Real online booking, not a contact-us form.",
-      body: "A modern booking flow picks the visit type, finds a time, captures insurance and contact info, and ends with a confirmation email. The widget is mobile-first and works without an account.",
+      body: "A modern booking flow picks the treatment or consultation, finds a time, captures the intake, and ends with a confirmation email. The widget is mobile-first and works without an account.",
       highlights: [
         "Choose visit type → time → details",
         "Confirmation email + calendar attach",
@@ -251,105 +273,118 @@ const DENTAL: ExampleConcept = {
       ],
     },
     {
-      eyebrow: "Trust",
-      title: "Team, credentials, and reviews — in that order.",
-      body: "Photos of the doctors and hygienists, school and licensure, and verified reviews. Patients are choosing a person, not just a clinic; the page treats it that way.",
+      eyebrow: "Team",
+      title: "Providers, credentials, and a face for the practice.",
+      body: "Photos of the medical director, nurse injectors, and lead aestheticians, along with licensure and training. Guests are choosing a person; the page treats it that way.",
       highlights: [
-        "Doctor and hygienist bios",
-        "Schools, licenses, board certifications",
-        "Verified Google reviews embed",
+        "Provider bios and roles",
+        "Schools, licenses, certifications",
+        "Sample review layout, clearly labeled",
       ],
     },
     {
       eyebrow: "Gallery",
-      title: "Before-and-after, the way a dentist would present it.",
-      body: "Smile galleries grouped by case type (whitening, veneers, alignment). Each pair includes the treatment, the time elapsed, and any caveats. Honest visual proof, not a stock library.",
+      title: "Before-and-after, with the disclaimer guests expect.",
+      body: "Treatment galleries grouped by category (lips, smoothing, skin, body). Each pair includes the treatment, the time elapsed, and a results-vary disclaimer. Honest visual proof, never stock smiles.",
       highlights: [
-        "Case-type filter",
-        "Treatment + timeline noted",
-        "No stock smiles — patient-permission gallery",
+        "Treatment-type filter",
+        "Timeline + results-vary disclaimer",
+        "No stock photography — guest-permission gallery",
       ],
     },
     {
       eyebrow: "FAQ",
-      title: "First-visit logistics, insurance, financing.",
-      body: "The biggest blockers to booking a dentist aren’t clinical — they’re logistical. The FAQ answers them in plain English and earns rich-result eligibility through schema.",
+      title: "First-visit logistics, pricing windows, and aftercare.",
+      body: "The biggest blockers to booking a med spa are logistical and emotional. The FAQ answers both in plain English and earns rich-result eligibility through schema.",
       highlights: [
         "What to bring on your first visit",
-        "Insurance and financing answered",
+        "Pricing windows and packages",
         "FAQ schema for rich results",
+      ],
+    },
+    {
+      eyebrow: "Intake",
+      title: "Confidential intake, written like a clinical form.",
+      body: "Health history, medications, and treatment goals collected in a short structured form. Encrypted in transit, with a confirmation that explains what happens next and how the information is used.",
+      highlights: [
+        "Short structured intake",
+        "Encrypted in transit",
+        "Confirmation email explains next steps",
       ],
     },
   ],
   leadFlow: {
-    title: "How a new patient becomes a booked visit.",
-    body: "The page treats the booking flow as the first appointment, not a sales funnel. Each step removes friction the patient was about to feel.",
+    title: "How a curious visitor becomes a booked consultation.",
+    body: "The page treats the booking flow as the first appointment, not a sales funnel. Each step removes a question the guest was about to ask.",
     steps: [
       {
         label: "01",
-        title: "Patient picks a procedure or visit type",
-        body: "Cleaning, cosmetic, restorative, emergency. The shape of the visit decides what’s asked next.",
+        title: "Guest reads a treatment page",
+        body: "Injectables, facials, laser, body. Each page is written for the guest, not for SEO.",
       },
       {
         label: "02",
-        title: "Time and insurance",
-        body: "The visitor picks a slot and confirms an in-network carrier. Out-of-network patients still see prices.",
+        title: "Guest picks a consultation or visit",
+        body: "The shape of the visit decides what is asked next.",
       },
       {
         label: "03",
-        title: "Booking + confirmation",
-        body: "A confirmation email lands instantly. A separate notification reaches the front desk.",
+        title: "Time and intake",
+        body: "The visitor picks a slot, confirms basic intake, and lands a confirmation email instantly.",
       },
       {
         label: "04",
         title: "Reminder + arrival flow",
-        body: "Day-before reminder by email or SMS. New-patient packet attached.",
+        body: "Day-before reminder by email or SMS. Pre-visit packet attached for first-time guests.",
       },
     ],
   },
   features: [
-    { label: "Online booking widget", included: true, note: "Cal.com / Calendly style" },
-    { label: "Procedure pages with pricing", included: true },
-    { label: "Doctor and team bios", included: true },
-    { label: "Smile gallery", included: true, note: "Patient-permission" },
-    { label: "Reviews + trust block", included: true },
-    { label: "New patient intake form", included: true },
-    { label: "Insurance carrier list", included: true },
+    { label: "Online booking widget", included: true, note: "Consultation + treatment" },
+    { label: "Treatment pages with pricing windows", included: true },
+    { label: "Provider and team bios", included: true },
+    { label: "Before/after gallery", included: true, note: "With results-vary disclaimer" },
+    { label: "Sample review layout", included: true },
+    { label: "First-visit intake form", included: true },
+    { label: "Mobile-first sticky booking CTA", included: true },
     { label: "FAQ + schema", included: true },
-    { label: "AI booking / intake assistant", included: false, note: "Optional add-on" },
+    { label: "AI intake assistant", included: false, note: "Optional add-on" },
     { label: "Monthly care plan", included: true, note: "From $99/month" },
   ],
   whyItWorks: {
-    title: "Why this structure works for dental practices.",
-    body: "Dentistry is high-trust, high-friction, and high-intent. Patients are deciding on a person and a process at the same time. A site that answers logistical questions first wins more bookings than one that tries to sell craftsmanship.",
+    title: "Why this structure works for med spas.",
+    body: "Med spa decisions are high-trust, high-friction, and emotionally weighted. Guests are deciding on a person and a treatment at the same time. A site that educates first and books second wins more consultations than one that tries to sell results.",
     points: [
-      "Insurance and booking surface above the fold.",
-      "Procedure pages let patients self-qualify before booking.",
+      "Consultations surface above the fold.",
+      "Treatment pages let guests self-qualify before booking.",
       "Booking is a real widget, not a contact form.",
-      "Team and credentials are presented as people, not titles.",
-      "FAQ is patient-led, not marketing-led.",
+      "Providers are presented as people, not titles.",
+      "Galleries include the disclaimers guests expect.",
     ],
   },
   meta: {
-    title: "Dental Website Concept · Martin Web Works",
+    title: "Med Spa Website Concept · Martin Web Works",
     description:
-      "Concept walkthrough of a modern dental practice website built around online booking, procedure pricing, and verified trust. Designed by Martin Web Works.",
+      "Concept walkthrough of a med spa website built around consultations, treatment education, and online booking. Designed by Martin Web Works.",
   },
 };
 
 const LAW_FIRM: ExampleConcept = {
   slug: "law-firm-website-concept",
-  baseSlug: "rivermark-law",
+  baseSlug: "harbor-slate-law",
+  variant: "lawFirm",
+  assistantScenarioId: "law-firm",
   industryLabel: "Law-firm website",
   industryShort: "law firms",
   hero: {
     eyebrow: "Concept example · Not a real client",
-    headline: "A solo law-firm website that earns trust before the first call.",
+    headline:
+      "A boutique law-firm website that earns trust before the first call.",
     lead: "Most small law-firm websites speak to other attorneys. A prospective client wants to understand their situation, see whether the firm handles it, and confirm a real human will reply within a day. This concept is built for that visitor.",
     primaryCtaInPage: "Book Free Website Audit",
-    siteTagline: "Estate planning that protects what you have built.",
-    siteCta: "Schedule a confidential 15-minute call",
-    services: ["Wills & Trusts", "Probate", "Power of Attorney"],
+    siteTagline: "Estate, business, and contracts — handled with care.",
+    siteCta: "Request a confidential 15-minute call",
+    services: ["Estate Planning", "Business", "Contracts"],
   },
   sections: [
     {
@@ -452,11 +487,11 @@ const LAW_FIRM: ExampleConcept = {
     { label: "Monthly care plan", included: true, note: "From $99/month" },
   ],
   whyItWorks: {
-    title: "Why this structure works for solo attorneys.",
-    body: "Solo practitioners win on judgment and presence, not on logos. The site’s job is to communicate both — quietly, deliberately, and without sounding like an agency template.",
+    title: "Why this structure works for small firms.",
+    body: "Boutique firms win on judgment and presence, not on logos. The site’s job is to communicate both — quietly, deliberately, and without sounding like an agency template.",
     points: [
       "Practice area named in the headline.",
-      "Attorney page reads like a person, not a CV.",
+      "Attorney pages read like people, not CVs.",
       "Confidentiality is shown, not just stated.",
       "Intake replaces ‘Contact us’ entirely.",
       "FAQ removes friction from the first call.",
@@ -469,7 +504,7 @@ const LAW_FIRM: ExampleConcept = {
   },
 };
 
-export const EXAMPLE_CONCEPTS: ExampleConcept[] = [ROOFING, DENTAL, LAW_FIRM];
+export const EXAMPLE_CONCEPTS: ExampleConcept[] = [ROOFING, MED_SPA, LAW_FIRM];
 
 export function getExampleConceptBySlug(slug: string): ExampleConcept | null {
   return EXAMPLE_CONCEPTS.find((c) => c.slug === slug) ?? null;

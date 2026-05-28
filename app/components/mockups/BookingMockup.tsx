@@ -25,11 +25,38 @@ type Service = {
 type Slot = { id: string; label: string };
 type Day = { id: string; weekday: string; date: string; slots: Slot[] };
 
+export type BookingVariant = "generic" | "roofing" | "medSpa" | "lawFirm";
+
+type ContactSample = {
+  name: string;
+  phone: string;
+  email: string;
+  /** Replaces the "Address (for on-site visit)" field when present. */
+  addressLabel?: string;
+  addressPlaceholder?: string;
+  /** If true, suppress the address field entirely (e.g. virtual consults). */
+  noAddress?: boolean;
+};
+
+type VariantPreset = {
+  business: string;
+  domain: string;
+  services: Service[];
+  contact: ContactSample;
+  /** Sub-line under "Book with X" — keeps the demo honest. */
+  subtitle: string;
+};
+
 type Props = {
   business?: string;
   domain?: string;
   services?: Service[];
   days?: Day[];
+  /**
+   * Industry preset. Overridden by any individual prop above when present.
+   * Defaults to "generic" (roofing-flavored: estimate / consult / service call).
+   */
+  variant?: BookingVariant;
 };
 
 const DEFAULT_SERVICES: Service[] = [
@@ -37,6 +64,71 @@ const DEFAULT_SERVICES: Service[] = [
   { id: "consult", label: "Project consultation", duration: "45 min", meta: "Video or phone · Free" },
   { id: "emergency", label: "Same-day service call", duration: "60 min", meta: "On-site · From $129" },
 ];
+
+const VARIANT_PRESETS: Record<BookingVariant, VariantPreset> = {
+  generic: {
+    business: "Summit Ridge Roofing",
+    domain: "summitridgeroofing.com",
+    subtitle: "Demo widget · works with Cal.com, Calendly, or similar",
+    services: DEFAULT_SERVICES,
+    contact: {
+      name: "Sarah Kelly",
+      phone: "(703) 555-0142",
+      email: "sarah@example.com",
+      addressLabel: "Address (for on-site visit)",
+      addressPlaceholder: "1240 Lincoln St, Arlington VA",
+    },
+  },
+  roofing: {
+    business: "Summit Ridge Roofing",
+    domain: "summitridgeroofing.com",
+    subtitle: "Demo widget · roof inspections, estimates, and storm calls",
+    services: [
+      { id: "inspection", label: "Free roof inspection", duration: "30 min", meta: "On-site · Free" },
+      { id: "storm", label: "Storm-damage assessment", duration: "45 min", meta: "Same-day · Insurance friendly" },
+      { id: "replacement", label: "Replacement estimate", duration: "60 min", meta: "On-site · Free quote" },
+    ],
+    contact: {
+      name: "Sarah Kelly",
+      phone: "(703) 555-0142",
+      email: "sarah@example.com",
+      addressLabel: "Property address",
+      addressPlaceholder: "1240 Lincoln St, Arlington VA",
+    },
+  },
+  medSpa: {
+    business: "Luma Aesthetics",
+    domain: "lumaaesthetics.com",
+    subtitle: "Demo widget · consultations and treatment bookings",
+    services: [
+      { id: "consult", label: "Complimentary consultation", duration: "15 min", meta: "In-person or video · Free" },
+      { id: "facial", label: "Signature facial", duration: "60 min", meta: "In-person · From $145" },
+      { id: "injectables", label: "Injectables consultation", duration: "30 min", meta: "With nurse injector · Free" },
+    ],
+    contact: {
+      name: "Maya Chen",
+      phone: "(202) 555-0193",
+      email: "maya@example.com",
+      noAddress: true,
+    },
+  },
+  lawFirm: {
+    business: "Harbor & Slate Law",
+    domain: "harborslatelaw.com",
+    subtitle: "Demo widget · confidential consultations",
+    services: [
+      { id: "intake", label: "Confidential 15-min call", duration: "15 min", meta: "By phone · Free" },
+      { id: "video", label: "Video consultation", duration: "30 min", meta: "Secure video · Free" },
+      { id: "in-office", label: "In-office consultation", duration: "45 min", meta: "Downtown office · Free" },
+    ],
+    contact: {
+      name: "David Park",
+      phone: "(202) 555-0117",
+      email: "david@example.com",
+      noAddress: true,
+    },
+  },
+};
 
 const DEFAULT_DAYS: Day[] = [
   {
@@ -84,16 +176,23 @@ const DEFAULT_DAYS: Day[] = [
 type Stage = "service" | "time" | "details" | "confirm";
 
 export function BookingMockup({
-  business = "Summit Ridge Roofing",
-  domain = "summitridgeroofing.com",
-  services = DEFAULT_SERVICES,
+  business,
+  domain,
+  services,
   days = DEFAULT_DAYS,
+  variant = "generic",
 }: Props) {
+  const preset = VARIANT_PRESETS[variant];
+  const resolvedBusiness = business ?? preset.business;
+  const resolvedDomain = domain ?? preset.domain;
+  const resolvedServices = services ?? preset.services;
+  const contact = preset.contact;
+
   const [stage, setStage] = useState<Stage>("service");
   const [serviceId, setServiceId] = useState<string | null>(null);
   const [slotKey, setSlotKey] = useState<{ day: string; slot: string } | null>(null);
 
-  const service = services.find((s) => s.id === serviceId) ?? null;
+  const service = resolvedServices.find((s) => s.id === serviceId) ?? null;
   const day = days.find((d) => d.id === slotKey?.day);
   const slot = day?.slots.find((s) => s.id === slotKey?.slot);
 
@@ -104,15 +203,15 @@ export function BookingMockup({
   };
 
   return (
-    <BrowserFrame url={domain}>
+    <BrowserFrame url={resolvedDomain}>
       <div className="bg-[var(--cream-paper)] px-5 py-6 sm:px-7 sm:py-7">
         <div className="flex items-center justify-between gap-3">
           <div className="leading-tight">
             <p className="text-[0.95rem] font-semibold text-[var(--ink-navy)]">
-              Book with {business}
+              Book with {resolvedBusiness}
             </p>
             <p className="text-[11px] text-[var(--warm-ash-soft)]">
-              Demo widget · works with Cal.com, Calendly, or similar
+              {preset.subtitle}
             </p>
           </div>
           <StageBadge stage={stage} />
@@ -123,7 +222,7 @@ export function BookingMockup({
         <div className="mt-5">
           {stage === "service" ? (
             <ServiceStep
-              services={services}
+              services={resolvedServices}
               selected={serviceId}
               onSelect={(id) => {
                 setServiceId(id);
@@ -149,6 +248,7 @@ export function BookingMockup({
               service={service}
               day={day ?? null}
               slot={slot ?? null}
+              contact={contact}
               onConfirm={() => setStage("confirm")}
               onBack={() => setStage("time")}
             />
@@ -159,6 +259,7 @@ export function BookingMockup({
               service={service}
               day={day ?? null}
               slot={slot ?? null}
+              contact={contact}
               onReset={reset}
             />
           ) : null}
@@ -303,12 +404,14 @@ function DetailsStep({
   service,
   day,
   slot,
+  contact,
   onConfirm,
   onBack,
 }: {
   service: Service | null;
   day: Day | null;
   slot: Slot | null;
+  contact: ContactSample;
   onConfirm: () => void;
   onBack: () => void;
 }) {
@@ -328,15 +431,17 @@ function DetailsStep({
       </div>
 
       <div className="mt-4 grid gap-3">
-        <DemoInput label="Name" placeholder="Sarah Kelly" />
+        <DemoInput label="Name" placeholder={contact.name} />
         <div className="grid gap-3 sm:grid-cols-2">
-          <DemoInput label="Phone" placeholder="(703) 555-0142" />
-          <DemoInput label="Email" placeholder="sarah@example.com" />
+          <DemoInput label="Phone" placeholder={contact.phone} />
+          <DemoInput label="Email" placeholder={contact.email} />
         </div>
-        <DemoInput
-          label="Address (for on-site visit)"
-          placeholder="1240 Lincoln St, Arlington VA"
-        />
+        {contact.noAddress ? null : (
+          <DemoInput
+            label={contact.addressLabel ?? "Address"}
+            placeholder={contact.addressPlaceholder ?? ""}
+          />
+        )}
       </div>
 
       <button
@@ -358,11 +463,13 @@ function ConfirmStep({
   service,
   day,
   slot,
+  contact,
   onReset,
 }: {
   service: Service | null;
   day: Day | null;
   slot: Slot | null;
+  contact: ContactSample;
   onReset: () => void;
 }) {
   return (
@@ -394,7 +501,7 @@ function ConfirmStep({
           label="When"
           value={`${day?.weekday ?? ""} ${day?.date ?? ""} · ${slot?.label ?? ""}`}
         />
-        <ConfirmRow label="Confirmation" value="Sent to sarah@example.com" />
+        <ConfirmRow label="Confirmation" value={`Sent to ${contact.email}`} />
       </dl>
       <button
         type="button"

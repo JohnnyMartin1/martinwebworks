@@ -28,6 +28,10 @@ const CTA_EVENT_MAP: Record<
   phone_section: { event: "cta_click_phone", location: "section" },
   phone_mobile_sticky: { event: "cta_click_phone", location: "mobile_sticky" },
   scheduling: { event: "scheduling_click", location: "site" },
+  scheduling_free_audit: {
+    event: "free_audit_page_scheduling_click",
+    location: "free_audit",
+  },
 };
 
 /**

@@ -14,7 +14,7 @@ export type ExampleTag =
   | "Electricians"
   | "Contractors"
   | "Auto Detailers"
-  | "Dentists"
+  | "Med Spas"
   | "Law Firms"
   | "Wellness"
   | "Hospitality";
@@ -160,41 +160,41 @@ export const EXAMPLES: ExampleBusiness[] = [
     domain: "kettlehillvet.com",
   },
   {
-    slug: "lumen-dental",
-    name: "Lumen Dental Studio",
+    slug: "luma-aesthetics",
+    name: "Luma Aesthetics",
     industry: "Wellness",
-    tags: ["Dentists", "Wellness"],
-    tagline: "Boutique dental practice with clean booking.",
+    tags: ["Med Spas", "Wellness"],
+    tagline: "Med spa with consultations, treatments, and online booking.",
     pitch:
-      "Concept site for a high-end dental practice. Editorial photography placeholder, clean booking, and a calm visual register that signals craft.",
+      "Concept site for a med spa. Treatment-first layout with consultation booking, an editorial visual register, and an intake flow that respects clinical context.",
     features: [
-      "Procedure pages with pricing transparency",
-      "Online booking widget",
-      "Before-and-after smile gallery (concept)",
-      "New patient packet PDF",
+      "Treatment pages with consultation CTAs",
+      "Online booking for consultations and visits",
+      "Before-and-after gallery layout with disclaimer",
+      "FAQ and intake forms tuned for first-time guests",
     ],
     palette: {
-      name: "Porcelain",
-      surface: "#fbfbfd",
-      surfaceDeep: "#e8ecf4",
-      ink: "#1f2a44",
-      accent: "#1b73a3",
-      accentSoft: "#dbeefa",
+      name: "Champagne Linen",
+      surface: "#f8f4ef",
+      surfaceDeep: "#ede4d6",
+      ink: "#2a2118",
+      accent: "#9a6b3f",
+      accentSoft: "#efe1cf",
     },
-    domain: "lumendental.com",
+    domain: "lumaaesthetics.com",
   },
   {
-    slug: "rivermark-law",
-    name: "Rivermark Law",
+    slug: "harbor-slate-law",
+    name: "Harbor & Slate Law",
     industry: "Professional",
     tags: ["Law Firms"],
-    tagline: "Solo estate planning attorney.",
+    tagline: "Boutique firm. Estate, business, and consultation requests.",
     pitch:
-      "Concept site for a solo law practice. Authority-forward design: a clear practice area page tree, a confidential intake form, and a calm, deliberate visual register.",
+      "Concept site for a small law firm. Authority-forward design: a clear practice area page tree, a confidential intake form, and a calm, deliberate visual register.",
     features: [
       "Practice area page tree",
       "Confidential intake form",
-      "Attorney bio and credentials",
+      "Attorney bios and credentials",
       "Free 15-minute consultation request",
     ],
     palette: {
@@ -205,7 +205,7 @@ export const EXAMPLES: ExampleBusiness[] = [
       accent: "#7c4422",
       accentSoft: "#f0e2d2",
     },
-    domain: "rivermarklaw.com",
+    domain: "harborslatelaw.com",
   },
   {
     slug: "northcap-accounting",
@@ -271,7 +271,7 @@ export const EXAMPLE_FILTER_TAGS: ExampleTag[] = [
   "Electricians",
   "Contractors",
   "Auto Detailers",
-  "Dentists",
+  "Med Spas",
   "Law Firms",
   "Wellness",
   "Hospitality",

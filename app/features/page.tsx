@@ -184,7 +184,7 @@ function LeadCaptureSection() {
       <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-7">
         <FormMockup variant="quote" />
         <FormMockup variant="contact" business="Verbena Aesthetics" />
-        <FormMockup variant="intake" business="Rivermark Law" />
+        <FormMockup variant="intake" business="Harbor & Slate Law" />
       </div>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">

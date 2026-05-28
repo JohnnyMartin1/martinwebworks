@@ -17,9 +17,9 @@ export function ReviewsMockup() {
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--warm-ash)]">
           What clients say
         </p>
-        <p className="text-[10px] text-[var(--warm-ash-soft)]">
-          Concept template
-        </p>
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-[var(--divider)] bg-[var(--cream-deep)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-[var(--warm-ash)]">
+          Sample review layout
+        </span>
       </div>
       <ul className="mt-3 grid gap-3 sm:grid-cols-3">
         {SAMPLE_REVIEWS.map((r) => (
@@ -32,13 +32,14 @@ export function ReviewsMockup() {
               “{r.body}”
             </p>
             <p className="mt-2 text-[0.72rem] text-[var(--warm-ash)]">
-              — {r.author}, {r.context}
+              — Sample review · {r.context}
             </p>
           </li>
         ))}
       </ul>
       <p className="mt-3 text-[0.7rem] text-[var(--warm-ash-soft)]">
-        Concept layout — real reviews replace these on a live build.
+        Sample review layout — real customer reviews replace these on a live
+        build. No real testimonials are shown here.
       </p>
     </div>
   );

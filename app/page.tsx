@@ -487,8 +487,8 @@ function ExamplesStrip() {
   // Feature the three businesses that have full concept walkthroughs.
   const featured = [
     EXAMPLES.find((e) => e.slug === "summit-ridge-roofing")!,
-    EXAMPLES.find((e) => e.slug === "lumen-dental")!,
-    EXAMPLES.find((e) => e.slug === "rivermark-law")!,
+    EXAMPLES.find((e) => e.slug === "luma-aesthetics")!,
+    EXAMPLES.find((e) => e.slug === "harbor-slate-law")!,
   ];
   return (
     <Section tone="paper" hairline="bottom">

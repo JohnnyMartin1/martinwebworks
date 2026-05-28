@@ -38,16 +38,16 @@ type ContactRoute = {
 
 const ROUTES: ContactRoute[] = [
   {
-    label: "Most people start here",
+    label: "Best starting point for new projects",
     title: "Free Website Audit",
     body:
-      "A 30-minute conversation about your current site (or your situation if you do not have one). What is helping, what is hurting, what we would fix first. No pitch.",
+      "Book a time or send the form. A 30-minute conversation about your current site (or your situation if you do not have one). What is helping, what is hurting, what we would fix first. No pitch.",
     primary: {
-      label: "Book Free Website Audit",
+      label: "Book or send the form",
       href: BOOK_AUDIT_HREF,
       external: BOOK_AUDIT_IS_EXTERNAL,
     },
-    secondary: { label: "Read what the audit covers", href: "/free-audit" },
+    secondary: { label: "What the audit covers", href: "/free-audit" },
   },
   {
     label: "Already know what you want",
@@ -146,7 +146,7 @@ export default function ContactPage() {
             <p className="t-label text-[var(--warm-ash)]">Direct contact</p>
             <h2 className="t-headline mt-3">Or skip the routing entirely.</h2>
             <p className="t-body mt-4 text-[var(--warm-ash)]">
-              Email is the main contact channel. We answer in one business day, often faster. We do not run a call center, a phone tree, or a ticketing system.
+              Email is the fastest way to reach the studio. We answer in one business day, often faster. We do not run a call center, a phone tree, or a ticketing system.
             </p>
           </div>
 

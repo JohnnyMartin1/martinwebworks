@@ -5,6 +5,7 @@ import { SiteHeader } from "@/app/components/site/SiteHeader";
 import { SiteFooter } from "@/app/components/site/SiteFooter";
 import { MobileStickyCTA } from "@/app/components/site/MobileStickyCTA";
 import { Analytics } from "@/app/components/site/Analytics";
+import { ScrollToTopOnNavigation } from "@/app/components/site/ScrollToTopOnNavigation";
 import { SITE } from "@/app/data/site";
 
 const geistSans = Geist({
@@ -71,6 +72,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <ScrollToTopOnNavigation />
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

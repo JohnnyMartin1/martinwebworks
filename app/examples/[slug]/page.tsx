@@ -18,6 +18,9 @@ import {
   ReviewsMockup,
   FaqMockup,
 } from "@/app/components/mockups/TrustMockup";
+import { ConceptHomeMockup } from "@/app/components/mockups/ConceptHomeMockup";
+import { BookingMockup } from "@/app/components/mockups/BookingMockup";
+import { AssistantDemo } from "@/app/components/mockups/AssistantDemo";
 
 import { BreadcrumbJsonLd } from "@/app/components/seo/JsonLd";
 import {
@@ -87,6 +90,8 @@ export default async function ExampleConceptPage({ params }: Props) {
       <Hero concept={concept} base={base} />
       <HomepageMockupSection concept={concept} base={base} />
       <KeySectionsBlock concept={concept} base={base} />
+      <BookingSection concept={concept} />
+      <AssistantSection concept={concept} />
       <MobilePreviewSection concept={concept} base={base} />
       <LeadFlowSection concept={concept} />
       <FeaturesBreakdown concept={concept} />
@@ -189,19 +194,181 @@ function HomepageMockupSection({
           and the trust block answers the silent question every prospect has.
         </p>
       </div>
-      <div className="mt-10 mx-auto max-w-[860px]">
-        <BrowserFrame url={base.domain}>
-          <SiteMockup
-            businessName={base.name}
-            tagline={concept.hero.siteTagline}
-            primaryCta={concept.hero.siteCta}
-            serviceLabels={concept.hero.services}
-            palette={base.palette}
-          />
-        </BrowserFrame>
+      <div className="mt-10 mx-auto max-w-[940px]">
+        <ConceptHomeMockup
+          variant={concept.variant}
+          business={base}
+          headline={concept.hero.siteTagline}
+          subline={`Concept for ${base.name}, designed by Martin Web Works. Layout adapts to industry-specific reading patterns.`}
+          cta={concept.hero.siteCta}
+        />
+        <p className="mt-3 text-center text-[0.78rem] text-[var(--warm-ash)]">
+          Concept screenshot. Not a real client site.
+        </p>
       </div>
     </Section>
   );
+}
+
+/* ----------------------------------------------------------
+   Booking section — uses the variant-aware BookingMockup so
+   the industry's actual service names and intake fields land
+   in the right places (roof inspection vs. consultation vs.
+   confidential call).
+   ---------------------------------------------------------- */
+
+function BookingSection({ concept }: { concept: ExampleConcept }) {
+  const copy = bookingCopy(concept);
+  return (
+    <Section tone="cream-deep" hairline="top">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-14">
+        <div className="max-w-[520px]">
+          <p className="t-label text-[var(--warm-ash)]">Booking module</p>
+          <h2 className="t-headline mt-3">{copy.title}</h2>
+          <p className="t-body mt-5 text-[var(--warm-ash)]">{copy.body}</p>
+          <ul className="mt-6 grid gap-2.5">
+            {copy.bullets.map((b) => (
+              <li
+                key={b}
+                className="flex items-start gap-2.5 text-[0.95rem] text-[var(--ink-navy)]"
+              >
+                <CheckIcon className="mt-1 shrink-0 text-[var(--signal-blue)]" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <BookingMockup variant={concept.variant} />
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function bookingCopy(concept: ExampleConcept) {
+  switch (concept.variant) {
+    case "roofing":
+      return {
+        title: "Schedule the inspection without leaving the page.",
+        body: "Roofing customers often book the inspection in the same minute they decide to. This widget lets them — service, time, address, done.",
+        bullets: [
+          "Free inspection, storm assessment, or replacement quote",
+          "Property address captured for the route",
+          "Confirmation email + crew dispatch notification",
+        ],
+      };
+    case "medSpa":
+      return {
+        title: "Consultations and treatments, booked online.",
+        body: "Guests pick a consultation or treatment, find a time, and complete a short intake. The confirmation explains what to bring on a first visit.",
+        bullets: [
+          "Complimentary consultation as the default first step",
+          "Treatment-specific intake on confirmation",
+          "Reschedule link in every email",
+        ],
+      };
+    case "lawFirm":
+      return {
+        title: "A confidential 15-minute call, on the calendar.",
+        body: "Prospective clients pick a time without the awkward phone-tag step. The intake confirms what the call covers and what is shared.",
+        bullets: [
+          "Phone, video, or in-office consultation options",
+          "Confirmation explains scope and confidentiality",
+          "Submitting does not create an attorney-client relationship",
+        ],
+      };
+  }
+}
+
+/* ----------------------------------------------------------
+   Assistant section — locks AssistantDemo to the concept's
+   scenario so the surrounding industry context drives the
+   conversation. Inherits the legal-advice guardrail for law
+   firms automatically (it's baked into the scenario).
+   ---------------------------------------------------------- */
+
+function AssistantSection({ concept }: { concept: ExampleConcept }) {
+  const copy = assistantCopy(concept);
+  return (
+    <Section tone="paper" hairline="top">
+      <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-14">
+        <div>
+          <AssistantDemo
+            scenarioId={concept.assistantScenarioId}
+            caption={copy.caption}
+          />
+        </div>
+        <div className="max-w-[480px] lg:order-first">
+          <p className="t-label text-[var(--warm-ash)]">AI assistant</p>
+          <h2 className="t-headline mt-3">{copy.title}</h2>
+          <p className="t-body mt-5 text-[var(--warm-ash)]">{copy.body}</p>
+          <ul className="mt-6 grid gap-2.5">
+            {copy.bullets.map((b) => (
+              <li
+                key={b}
+                className="flex items-start gap-2.5 text-[0.95rem] text-[var(--ink-navy)]"
+              >
+                <CheckIcon className="mt-1 shrink-0 text-[var(--signal-blue)]" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-[0.85rem] text-[var(--warm-ash)]">
+            See the{" "}
+            <Link
+              href="/ai-assistant"
+              className="font-medium text-[var(--ink-navy)] underline-offset-4 hover:underline"
+            >
+              full AI assistant page
+            </Link>{" "}
+            for guardrails, pricing, and other industry scenarios.
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function assistantCopy(concept: ExampleConcept) {
+  switch (concept.variant) {
+    case "roofing":
+      return {
+        title: "Answers storm-season questions before the phone rings.",
+        body: "When the homeowner asks ‘do you handle storm damage in Arlington?’ at 9pm, the assistant answers, qualifies the lead, and hands it to your inbox by morning.",
+        bullets: [
+          "Storm damage, repair, replacement, inspection",
+          "Captures address + best contact",
+          "Routes to your project manager or CRM",
+        ],
+        caption:
+          "Scripted demo. The real assistant uses your approved business information, not generic AI replies.",
+      };
+    case "medSpa":
+      return {
+        title: "Treatment questions answered with your voice.",
+        body: "Guests ask the assistant about treatments and pricing windows. The assistant explains, qualifies, and offers a consultation booking — without making medical claims.",
+        bullets: [
+          "Treatments, pricing windows, consultation flow",
+          "Routes first-time guests to the right starting point",
+          "Never makes medical promises or guarantees",
+        ],
+        caption:
+          "Scripted demo. The real assistant uses your approved business information, not generic AI replies.",
+      };
+    case "lawFirm":
+      return {
+        title: "Confidential intake, with the right disclaimers.",
+        body: "The assistant collects the basics needed to route an inquiry to the right attorney. It explicitly does not provide legal advice and does not create an attorney-client relationship.",
+        bullets: [
+          "Practice area routing (estate, business, contracts)",
+          "Confidential intake summary by email",
+          "Hard guardrails on legal advice and outcomes",
+        ],
+        caption:
+          "Scripted demo. The real assistant does not provide legal advice or create an attorney-client relationship.",
+      };
+  }
 }
 
 /* ----------------------------------------------------------

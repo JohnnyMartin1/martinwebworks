@@ -47,6 +47,12 @@ type Scenario = {
   qualifyReplies: string[];
   /** Final "lead captured" summary line. */
   lead: { name: string; contact: string; need: string; meta: string };
+  /**
+   * Optional scenario-specific guardrail line surfaced under the chat
+   * window. Used today by the Law Firm scenario to make the limits of
+   * the assistant unambiguous.
+   */
+  guardrail?: string;
 };
 
 const SCENARIOS: Scenario[] = [
@@ -84,8 +90,8 @@ const SCENARIOS: Scenario[] = [
   {
     id: "med-spa",
     label: "Med Spa",
-    business: "Verbena Aesthetics",
-    domain: "verbenaaesthetics.com",
+    business: "Luma Aesthetics",
+    domain: "lumaaesthetics.com",
     prompts: [
       "Do you offer Botox consultations?",
       "What does a facial usually cost?",
@@ -112,6 +118,43 @@ const SCENARIOS: Scenario[] = [
       meta: "Evenings preferred · Sent to your inbox",
     },
   },
+  {
+    id: "law-firm",
+    label: "Law Firm",
+    business: "Harbor & Slate Law",
+    domain: "harborslatelaw.com",
+    prompts: [
+      "Can I request a consultation?",
+      "Do you handle contract disputes?",
+      "What information should I send first?",
+    ],
+    responses: [
+      "Yes — we offer a confidential 15-minute consultation by phone or video. To get you to the right attorney, can you tell me roughly what the matter involves?",
+      "We do handle business contract matters, including disputes. I cannot give legal advice here, but I can collect the basics and route you to the right attorney for a confidential call. Is this a contract you signed, a contract you are drafting, or a dispute already underway?",
+      "Mostly the basics: your name, a way to reach you, and a one- or two-sentence description of the situation. We do not need documents at this stage — those come up at the consultation.",
+    ],
+    qualify: {
+      cue: "Pick the closest match:",
+      choices: [
+        "Estate planning",
+        "Business or contract",
+        "Not sure yet",
+      ],
+    },
+    qualifyReplies: [
+      "Got it — estate planning. The attorney who handles wills and trusts will reach out within one business day. Can you share your name and best contact?",
+      "Understood — a business or contract matter. I will route this to our business attorney and have someone confirm a confidential consultation. Your name and best contact?",
+      "No problem. Share your name and best contact and we will pair you with the attorney whose practice fits best after a brief intake call.",
+    ],
+    lead: {
+      name: "David Park",
+      contact: "(202) 555-0117",
+      need: "Business contract · Confidential consult",
+      meta: "Email preferred · Sent to your inbox",
+    },
+    guardrail:
+      "This assistant does not provide legal advice or create an attorney-client relationship. It collects basic intake information and routes it to the firm.",
+  },
 ];
 
 type DemoState =
@@ -119,8 +162,20 @@ type DemoState =
   | { stage: "qualify"; promptIndex: number }
   | { stage: "captured"; promptIndex: number; qualifyIndex: number };
 
-export function AssistantDemo() {
-  const [scenarioId, setScenarioId] = useState<string>(SCENARIOS[0].id);
+type AssistantDemoProps = {
+  /**
+   * Lock the demo to a single scenario (hides the tab strip). Used on
+   * concept detail pages where the surrounding context already names the
+   * industry. Falls back to the multi-scenario picker when omitted.
+   */
+  scenarioId?: string;
+  /** Optional label for the small "scripted demo" footer note. */
+  caption?: string;
+};
+
+export function AssistantDemo({ scenarioId: lockedId, caption }: AssistantDemoProps = {}) {
+  const initialId = lockedId ?? SCENARIOS[0].id;
+  const [scenarioId, setScenarioId] = useState<string>(initialId);
   const scenario = useMemo(
     () => SCENARIOS.find((s) => s.id === scenarioId) ?? SCENARIOS[0],
     [scenarioId],
@@ -130,6 +185,7 @@ export function AssistantDemo() {
     if (id) setScenarioId(id);
     setState({ stage: "open" });
   };
+  const locked = Boolean(lockedId);
 
   const bubbles: Bubble[] = [];
   if (state.stage !== "open") {
@@ -149,13 +205,15 @@ export function AssistantDemo() {
 
   return (
     <div>
-      <ScenarioTabs
-        scenarios={SCENARIOS}
-        active={scenario.id}
-        onChange={(id) => reset(id)}
-      />
+      {locked ? null : (
+        <ScenarioTabs
+          scenarios={SCENARIOS}
+          active={scenario.id}
+          onChange={(id) => reset(id)}
+        />
+      )}
 
-      <div className="mt-4">
+      <div className={locked ? "" : "mt-4"}>
         <BrowserFrame url={scenario.domain}>
           <div className="bg-[var(--cream-paper)] px-5 py-6 sm:px-7 sm:py-7">
             <Header business={scenario.business} />
@@ -179,6 +237,7 @@ export function AssistantDemo() {
                 <PromptPicker
                   cue={scenario.qualify.cue}
                   prompts={scenario.qualify.choices}
+                  scrollOnMount
                   onPick={(i) =>
                     setState({
                       stage: "captured",
@@ -198,9 +257,18 @@ export function AssistantDemo() {
       </div>
 
       <p className="mt-3 text-center text-[0.72rem] text-[var(--warm-ash)]">
-        Scripted demo. The real assistant uses your approved business
-        information, not generic AI replies.
+        {caption ??
+          "Scripted demo. The real assistant uses your approved business information, not generic AI replies."}
       </p>
+
+      {scenario.guardrail ? (
+        <p
+          role="note"
+          className="mx-auto mt-2 max-w-[42rem] rounded-md border border-dashed border-[var(--divider)] bg-[var(--cream-paper)] px-3 py-2 text-center text-[0.72rem] text-[var(--warm-ash)]"
+        >
+          {scenario.guardrail}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -358,13 +426,24 @@ function PromptPicker({
   cue,
   prompts,
   onPick,
+  scrollOnMount = false,
 }: {
   cue: string;
   prompts: string[];
   onPick: (i: number) => void;
+  /**
+   * When true, the picker scrolls itself into view on mount. This is the
+   * old default — useful on mobile after a user-initiated stage change so
+   * the new choices are visible. It is intentionally OFF for the initial
+   * open-stage picker because the picker mounts on page load (not after
+   * a click); leaving it on caused the whole page to jump to the middle
+   * on every concept detail page visit.
+   */
+  scrollOnMount?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
+    if (!scrollOnMount) return;
     const el = ref.current;
     if (!el) return;
     const reduceMotion =
@@ -375,7 +454,7 @@ function PromptPicker({
       behavior: reduceMotion ? "auto" : "smooth",
       block: "nearest",
     });
-  }, []);
+  }, [scrollOnMount]);
   return (
     <div ref={ref} className="pt-2">
       <p className="text-[0.78rem] font-medium text-[var(--warm-ash)]">
