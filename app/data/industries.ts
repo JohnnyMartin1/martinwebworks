@@ -1268,12 +1268,486 @@ export const INDUSTRIES: IndustryEntry[] = [
       "Want a law firm website that earns trust without sounding like every other firm in town?",
   },
 
+  /* ---------- Dentists (published) ---------- */
+  {
+    slug: "dentists",
+    industryName: "Dentist",
+    pluralName: "Dentists",
+    metaTitle: "Websites for Dentists and Dental Practices",
+    metaDescription:
+      "Dental practice websites that earn patient trust, explain services in plain English, and turn nervous research into booked first appointments. Built and maintained by Martin Web Works.",
+    heroHeadline:
+      "Websites for dentists that turn careful research into booked first appointments.",
+    heroSubtext:
+      "Choosing a dentist is personal and slow. Your site should answer the quiet questions every new patient asks before they pick up the phone: is this office calm, is the team experienced, and how do I book a first visit without feeling rushed.",
+    searchIntent:
+      "Searches like 'dentist [city],' 'family dentist near me,' 'cosmetic dentist [city],' 'pediatric dentist [city]' come from new patients comparing two or three offices. The site is the screening round before any call gets made.",
+    whatCustomersNeed: [
+      "What services do you offer (general, cosmetic, pediatric, sedation, implants)?",
+      "Who are the dentists and how long have they practiced?",
+      "Do you accept new patients?",
+      "Do you take their insurance, or are you fee-for-service?",
+      "What does a first visit cost and include?",
+      "How easy is it to book? Is there online booking or a real phone person?",
+      "Is the office calm and patient-friendly, or rushed and corporate?",
+    ],
+    recommendedPages: [
+      {
+        title: "Homepage",
+        note: "Calm tone, real photo of the office or team, services strip, insurance plain-talk, and one clear new-patient CTA.",
+      },
+      {
+        title: "Services",
+        note: "Sections for general, cosmetic, restorative, pediatric, emergency. Each linking to a real detail page.",
+      },
+      {
+        title: "Individual service pages",
+        note: "Per major service (cleanings, fillings, crowns, implants, Invisalign, whitening, etc) with what to expect, sedation options, and pricing posture.",
+      },
+      {
+        title: "About / team",
+        note: "Real photos of the dentists, hygienists, and front desk. Credentials, training, years in practice.",
+      },
+      {
+        title: "New patient guide",
+        note: "What to bring, what the first visit covers, how long it takes, paperwork, insurance posture, expected cost.",
+      },
+      {
+        title: "Insurance and financing",
+        note: "Which plans you take, whether you are in-network, payment options, financing partners (CareCredit, etc).",
+      },
+      {
+        title: "Book an appointment",
+        note: "Online scheduler or a structured intake form, with a clear path to call the office instead.",
+      },
+    ],
+    leadCaptureFields: [
+      { field: "Name", rationale: "Required." },
+      { field: "Phone", rationale: "Dental practices still call to confirm. Phone matters more than email." },
+      { field: "Email", rationale: "Optional, but most new patients leave it." },
+      { field: "New or returning", rationale: "A toggle. Routes the lead to the right intake path." },
+      { field: "Reason for visit", rationale: "A short select: cleaning, exam, pain, cosmetic consult, second opinion. Helps the front desk." },
+      { field: "Insurance carrier (optional)", rationale: "Pre-qualifies the lead and avoids the awkward call later." },
+      { field: "Preferred days/times", rationale: "Two or three windows. Saves the email chain." },
+    ],
+    trustSignals: [
+      "Real photos of the office and the team (no stock dentists)",
+      "Dentist credentials, schools, and years in practice, plainly stated",
+      "Memberships in real associations (ADA, state dental society, AGD, AAID, etc) where applicable",
+      "Plain-English language about sedation and patient comfort",
+      "Honest insurance posture (in-network plans listed; fee-for-service stated openly)",
+      "Reviews quoted with patient consent or a Google review embed",
+      "HIPAA-aware contact form copy (no diagnoses or treatment plans sent over open email)",
+      "Office hours, address, and a real phone number above the fold",
+    ],
+    localSeoIdeas: [
+      "Title tag: '[City] dentist · [Practice Name].' Plain, not 'best dentist in [city].'",
+      "Service pages with city in the title and natural body copy ('Invisalign in [City]').",
+      "Patient FAQs on each service page (cost range, what to expect, how long the appointment takes).",
+      "Google Business Profile category matches the strongest service (general dentist, pediatric dentist, cosmetic dentist).",
+      "Office photos on the Google Business Profile updated quarterly via the monthly care plan.",
+    ],
+    commonMistakes: [
+      "Stock photos of dentists who do not work at the practice",
+      "Vague 'comprehensive dental care' copy with no real service detail",
+      "Insurance information hidden behind a phone call",
+      "Booking flow that requires creating an account before scheduling",
+      "Generic 'rejuvenate your smile' copy across every cosmetic page",
+      "No real team photos, only icons",
+      "Form fields that collect medical history before the first conversation",
+    ],
+    recommendedPackage: {
+      slug: "growth",
+      why: "Most dental practices need real service pages, a new-patient page, an insurance posture page, and a clean booking flow. Growth Website covers that cleanly. Authority is right if you have multiple locations, multiple specialties (general + ortho + oral surgery), or operate a DSO-style group practice.",
+    },
+    suggestedFeatures: [
+      "One page per major service, with patient FAQ",
+      "Dentist and team bios with credentials",
+      "New-patient flow page",
+      "Insurance and financing page",
+      "Booking integration with your practice management software",
+      "Reviews section (Google embed or quoted with patient consent)",
+      "HIPAA-aware contact form copy and privacy statement",
+      "Analytics and Search Console wired in",
+    ],
+    faqs: [
+      {
+        question: "Can the site connect to our scheduling or practice management software?",
+        answer:
+          "Yes. We integrate with NexHealth, LocalMed, Dentrix Ascend, Open Dental online portals, Weave, and similar tools. We do not replace your practice management software; we make sure the website hands off cleanly so a new patient does not feel like they have just opened a separate vendor.",
+      },
+      {
+        question: "How should we handle HIPAA on the contact form?",
+        answer:
+          "The website intake form is for first contact: name, contact, and the reason they want to come in. We do not collect medical history, diagnoses, or treatment plans through the public form. The privacy statement is written in plain English so a new patient understands what is and is not shared.",
+      },
+      {
+        question: "Should we put pricing on the site?",
+        answer:
+          "At least a starting price or a clear posture. Patients researching a new dentist are usually trying to figure out whether they can afford a first visit. Hidden pricing creates abandonment and the back-and-forth that follows. We do not publish a full fee schedule; we write a clear cost-of-first-visit statement and a financing-options paragraph.",
+      },
+      {
+        question: "Do you build sites for specialty practices (pediatric, ortho, oral surgery)?",
+        answer:
+          "Yes. The structure is the same; the content shifts. A pediatric practice needs a parent-focused tone, a clear first-visit page, and reassurance language. An orthodontic practice needs treatment-by-treatment pages and a clear consultation flow. We adjust the build around what the practice actually does.",
+      },
+    ],
+    relatedIndustries: ["med-spas", "law-firms", "contractors"],
+    relatedResources: [
+      "get-more-quote-requests",
+      "local-business-website-checklist",
+      "wix-vs-web-designer",
+      "website-not-getting-leads",
+    ],
+    mockup: {
+      domain: "claretreedental.com",
+      brandLabel: "Claretree Family Dental",
+      navItems: ["Services", "New patients", "Team", "Insurance", "Book"],
+      heroHeadline: "Calm, careful dentistry for families in Arlington.",
+      heroSubhead:
+        "General, cosmetic, and pediatric care. New patients welcome. Most major PPO plans accepted.",
+      primaryAction: "Book a First Visit",
+      secondaryAction: "New Patient Guide",
+      services: [
+        { label: "General dentistry", note: "Cleanings, exams, fillings, crowns, sealants." },
+        { label: "Cosmetic", note: "Whitening, veneers, bonding, Invisalign consults." },
+        { label: "Pediatric", note: "First-visit-friendly care from age 1 onward." },
+      ],
+      trustStrip: [
+        "ADA member",
+        "PPO friendly",
+        "Saturday hours",
+      ],
+      formTitle: "Book a first visit",
+      formRows: ["Name and phone", "New or returning", "Preferred day"],
+      formNote: "We confirm by phone within one business day.",
+    },
+    ctaHeadline:
+      "Want a dental practice website that earns a new patient's trust before they ever walk in the door?",
+  },
+
+  /* ---------- Restaurants (published) ---------- */
+  {
+    slug: "restaurants",
+    industryName: "Restaurant",
+    pluralName: "Restaurants",
+    metaTitle: "Websites for Restaurants",
+    metaDescription:
+      "Restaurant websites that answer the four questions every guest has in under five seconds: are you open, where are you, what is the food, and how do I get a table. Built and maintained by Martin Web Works.",
+    heroHeadline:
+      "Websites for restaurants that answer the four questions every guest has in five seconds.",
+    heroSubtext:
+      "A guest researching dinner does not read. They scan. The site should show hours, location, the kind of food, and how to reserve a table or order, before anyone scrolls.",
+    searchIntent:
+      "Searches like '[neighborhood] restaurants,' '[cuisine] near me,' '[restaurant name],' '[restaurant name] menu,' '[restaurant name] reservations' arrive on a phone, often within an hour of a decision. The site is a yes/no filter, not a brochure.",
+    whatCustomersNeed: [
+      "Are you open right now?",
+      "Where exactly are you, and is there parking?",
+      "What kind of food is it, at what price?",
+      "Can I see the menu without downloading a PDF?",
+      "How do I reserve, walk in, or order takeout / delivery?",
+      "Is there a private room or patio?",
+      "What does the place actually look like?",
+    ],
+    recommendedPages: [
+      {
+        title: "Homepage",
+        note: "Hours visible above the fold, one strong photo of the room or the food, one-line description, and a reservation / order CTA.",
+      },
+      {
+        title: "Menu",
+        note: "A real HTML menu, not a PDF. Sections by course, prices visible, dietary tags where useful. Updated easily.",
+      },
+      {
+        title: "Reservations",
+        note: "Embedded reservation widget (OpenTable, Resy, Tock, SevenRooms) or a clear phone-and-walk-in policy.",
+      },
+      {
+        title: "Order online",
+        note: "Direct links to your ordering platform (Toast, Square, ChowNow, Olo) or a first-party flow.",
+      },
+      {
+        title: "Private events and parties",
+        note: "Capacity, what you offer, a short inquiry form. Photos of the space arranged for events.",
+      },
+      {
+        title: "About",
+        note: "Who the chef is, what kind of place this is, how long you have been open. Plain English, not a manifesto.",
+      },
+      {
+        title: "Visit",
+        note: "Address, hours by day, parking, public transit, accessibility notes, and a real map.",
+      },
+    ],
+    leadCaptureFields: [
+      { field: "Reservation widget", rationale: "Most guests prefer to book a table without a form. Use the platform your floor uses." },
+      { field: "Private event inquiry form: name", rationale: "Required." },
+      { field: "Event date and party size", rationale: "Two short fields. Pre-qualifies for capacity." },
+      { field: "Event type", rationale: "Birthday, business dinner, rehearsal, holiday. A short select." },
+      { field: "Budget posture (optional)", rationale: "Avoids the back-and-forth." },
+      { field: "Email and phone", rationale: "Both. Event leads expect a same-day reply." },
+      { field: "Notes", rationale: "Open text field. Dietary restrictions, special requests, anything." },
+    ],
+    trustSignals: [
+      "Hours of operation visible above the fold, updated weekly via the care plan",
+      "Real photos of the food and the room, not stock",
+      "Chef and team photos with first names",
+      "Reservation widget from a real platform, not a 'call to reserve' line on a busy weekend",
+      "Menu published on the site itself, not a PDF that breaks on phones",
+      "Address, neighborhood, and parking information in plain language",
+      "Review quotes from real critics or guests, with attribution",
+      "Allergen, dietary, and accessibility notes in plain English",
+    ],
+    localSeoIdeas: [
+      "Title tag: '[Restaurant Name] · [Neighborhood] [cuisine type].' Plain, not stuffed.",
+      "One page per service the kitchen actually does: dinner, lunch, brunch, private events, catering.",
+      "Mirror name, address, phone exactly across the site, Google Business Profile, and reservation platforms.",
+      "Google Business Profile photos updated monthly via the care plan; new dish photos win local rankings.",
+      "Schema markup for the restaurant, menu items, and review snippets.",
+    ],
+    commonMistakes: [
+      "Hours hidden in the footer or 'see Google for hours'",
+      "A PDF menu that downloads instead of opening",
+      "A landing page with autoplay video and no useful information",
+      "Stock food photos from the menu vendor",
+      "Reservation system that requires creating an account before booking",
+      "No real photos of the room",
+      "An 'About' page that reads like a press release",
+    ],
+    recommendedPackage: {
+      slug: "growth",
+      why: "Most restaurants need a real menu page, photos that match the room, a reservation flow, an order-online flow, and a private-events page. The Growth Website handles that cleanly. Authority is right if you operate multiple concepts or multiple locations and need a parent-brand site that funnels to each.",
+    },
+    suggestedFeatures: [
+      "Hours block visible above the fold",
+      "Real HTML menu, not a PDF",
+      "Reservation widget integration (OpenTable, Resy, Tock, SevenRooms)",
+      "Order online integration (Toast, Square, ChowNow, Olo)",
+      "Private events inquiry form",
+      "Press and review quotes section",
+      "Photo gallery of the room and the food",
+      "Analytics and Search Console wired in",
+    ],
+    faqs: [
+      {
+        question: "Can the site embed our existing reservations or ordering platform?",
+        answer:
+          "Yes. We connect to OpenTable, Resy, Tock, SevenRooms for reservations, and Toast, Square, ChowNow, Olo for ordering. We do not replace your floor or kitchen tools; we make sure the website hands off cleanly so the guest is not bounced through a separate vendor experience.",
+      },
+      {
+        question: "Should the menu be a real page or a PDF?",
+        answer:
+          "A real page, almost always. PDFs break on phones, do not get indexed for search, and feel like 2009. We build the menu as structured content so you can update one dish or one price without us, and so Google can read it.",
+      },
+      {
+        question: "We change our menu often. Will the site keep up?",
+        answer:
+          "Yes. We structure the menu so the front-of-house manager (or whoever owns the menu) can update a dish, a price, or a section in a few minutes. The monthly care plan covers seasonal swaps; daily specials are usually self-service.",
+      },
+      {
+        question: "Do we need a separate site for private events or catering?",
+        answer:
+          "Usually no. A dedicated page inside the main site is enough, and it lets the same SEO and brand work harder. A separate site is only worth it if catering or events is a distinct brand or revenue line big enough to deserve its own marketing.",
+      },
+    ],
+    relatedIndustries: ["med-spas", "auto-detailers", "law-firms"],
+    relatedResources: [
+      "local-business-website-checklist",
+      "get-more-quote-requests",
+      "mobile-website-local-business",
+      "website-not-getting-leads",
+    ],
+    mockup: {
+      domain: "northbankkitchen.com",
+      brandLabel: "Northbank Kitchen",
+      navItems: ["Menu", "Reservations", "Private events", "About", "Visit"],
+      heroHeadline: "Seasonal American cooking in Old Town Alexandria.",
+      heroSubhead:
+        "Open for dinner Tuesday through Sunday. Reservations recommended on weekends.",
+      primaryAction: "Reserve a Table",
+      secondaryAction: "View the Menu",
+      services: [
+        { label: "Dinner", note: "Tuesday through Sunday, 5pm to close." },
+        { label: "Private events", note: "Up to 40 in the back room, full buyouts on Mondays." },
+        { label: "Takeout", note: "Order online, ready in 30 minutes." },
+      ],
+      trustStrip: [
+        "Open Tuesday to Sunday",
+        "Reservations recommended",
+        "Private events welcome",
+      ],
+      formTitle: "Private event inquiry",
+      formRows: ["Date and party size", "Event type", "Any notes"],
+      formNote: "We reply within one business day with availability and a menu starting point.",
+    },
+    ctaHeadline:
+      "Want a restaurant website that turns a phone search into a booked table?",
+  },
+
+  /* ---------- Home Services (umbrella, published) ---------- */
+  {
+    slug: "home-services",
+    industryName: "Home Service Business",
+    pluralName: "Home Service Businesses",
+    metaTitle: "Websites for Home Service Businesses",
+    metaDescription:
+      "Websites for home service businesses that turn searches into booked jobs. Built for trades, mobile-first, with click-to-call, real service pages, and quote forms that work on a phone in a driveway.",
+    heroHeadline:
+      "Websites for home service businesses that turn searches into booked jobs.",
+    heroSubtext:
+      "A homeowner with a leaking pipe, a dead AC, or a broken garage door does not browse. They tap the first site that loads, explains the service, and lets them call or request a visit in under a minute.",
+    searchIntent:
+      "Owners searching 'websites for home service businesses' or 'website for handyman / HVAC / garage door company' want a structure that works for trades. Real services, real service areas, fast forms, and a phone number above the fold.",
+    whatCustomersNeed: [
+      "What services do you actually offer?",
+      "What service area do you cover?",
+      "How fast can you get out for an emergency?",
+      "Are you licensed and insured?",
+      "Is there a service-call or trip fee?",
+      "Can they call you or text you right now?",
+      "What does the booking or estimate process look like?",
+    ],
+    recommendedPages: [
+      {
+        title: "Homepage",
+        note: "Click-to-call in the header, one strong photo of a real job, services strip, service area, and a clear quote button.",
+      },
+      {
+        title: "Services",
+        note: "One block per service: what is included, what it costs (range), how long it usually takes.",
+      },
+      {
+        title: "Individual service pages",
+        note: "One page per major service. Plain English. Common problems, signs you need it, what a typical job looks like.",
+      },
+      {
+        title: "Service area pages",
+        note: "Real cities or zip codes you cover. One page per city; not 50 thin pages with the city swapped.",
+      },
+      {
+        title: "Emergency / same-day",
+        note: "If you offer it, give it its own page. Hours of availability, callout fee, what triggers a same-day response.",
+      },
+      {
+        title: "About and licensing",
+        note: "Photo of the owner or the crew, license numbers, insurance, years in business.",
+      },
+      {
+        title: "Request a quote / Book a visit",
+        note: "Short form: name, address or ZIP, service needed, brief description. Phone number repeated.",
+      },
+    ],
+    leadCaptureFields: [
+      { field: "Name", rationale: "Required, first." },
+      { field: "Phone", rationale: "Most home-service leads convert by phone. Phone matters more than email." },
+      { field: "Address or ZIP", rationale: "Pre-qualifies the lead for service area before you call back." },
+      { field: "Service needed", rationale: "A short select. Repair, install, maintenance, not sure. Keep the list short." },
+      { field: "Urgency", rationale: "Today, this week, planning ahead. Helps route the lead correctly." },
+      { field: "Short description", rationale: "One open text field. Optional on mobile to keep the form fast." },
+      { field: "Photo upload (optional)", rationale: "Useful for plumbing leaks, broken units, damaged equipment. Never required." },
+    ],
+    trustSignals: [
+      "License number visible in the footer and on the contact page",
+      "Insurance status, stated plainly",
+      "Real photos of the crew and real job sites, not stock",
+      "Years in business, stated honestly",
+      "Service area shown as real cities or a map, not 'tri-state region'",
+      "Service-call or trip fee policy, in writing",
+      "Reviews quoted with permission, or a Google review embed",
+      "Manufacturer or trade-association certifications, where applicable",
+    ],
+    localSeoIdeas: [
+      "Title tag should read like '[Service] in [City] · [Business Name].' Plain, not stuffed.",
+      "Build one real page per city you actually cover. Real content per page, not a template with the city swapped in.",
+      "Mirror business name, phone, and address exactly across the site, Google Business Profile, and any directory listings.",
+      "Add internal links from service-area pages to the relevant service pages (plumbing, HVAC, garage, electric, etc).",
+      "Keep hero photos at sensible file sizes; a giant photo hurts mobile speed and local rankings.",
+    ],
+    commonMistakes: [
+      "Phone number buried in the footer instead of pinned to the header on mobile",
+      "No quote form, only a generic contact email",
+      "Click-to-call not wired, so customers have to copy the number",
+      "Service-area page with no real content, just a city name and a stock map",
+      "Stock photos of nice-looking trucks that are not yours",
+      "Service list copied from a template ('Quality service since 2015')",
+      "No mention of license or insurance anywhere on the site",
+      "Form fields the homeowner cannot answer at 9pm in their kitchen",
+    ],
+    recommendedPackage: {
+      slug: "growth",
+      why: "Most home service businesses need real service pages, service-area pages, a real quote form, reviews, and a clean mobile experience. That is exactly what the Growth Website is shaped for. Starter is too thin once you cover multiple services or multiple cities; Authority is right only if you run multiple trades or operate across several markets.",
+    },
+    suggestedFeatures: [
+      "Sticky click-to-call on mobile",
+      "Quote form on every service page",
+      "Service-area pages for real cities",
+      "Emergency or same-day page if relevant",
+      "License and insurance footer block",
+      "Reviews section (Google embed or quoted with permission)",
+      "Project or before-and-after photos",
+      "Analytics and Search Console wired in",
+    ],
+    faqs: [
+      {
+        question: "Does the site work if I run multiple services (HVAC and plumbing, electrical and handyman)?",
+        answer:
+          "Yes. We build one strong homepage that introduces the company, then one page per service so each one can rank on its own. The site does not get confusing; it gets more useful. Most multi-service homes-service companies see better results once each service has its own dedicated page rather than being lumped into one services list.",
+      },
+      {
+        question: "Can the site handle after-hours and emergency calls?",
+        answer:
+          "The site can. The phone routing is up to you. We make sure the click-to-call works, the form lands in your inbox the moment it is submitted, and your hours and emergency policy are written clearly. Routing after-hours to a partner, a voicemail with a callback note, or a third-party answering service is a decision we help you think through.",
+      },
+      {
+        question: "Do you build sites for trades that book via dispatch software like ServiceTitan or Housecall Pro?",
+        answer:
+          "Yes. We do not replace your dispatch software. We make sure the website hands off cleanly: the form lands in your inbox or directly into the dispatch tool, depending on what your tool supports, and the booking experience does not feel like the customer just opened a separate vendor.",
+      },
+      {
+        question: "We are small. Is this too much website for us?",
+        answer:
+          "Probably not. A small home service business is exactly who benefits most from a real website. The work is not the size of the page count; it is the quality of the lead flow. Starter is fine if you have one service in one city. Most multi-service companies are better off with Growth.",
+      },
+    ],
+    relatedIndustries: ["roofers", "contractors", "electricians", "plumbers", "landscapers"],
+    relatedResources: [
+      "website-not-getting-leads",
+      "get-more-quote-requests",
+      "small-business-website-cost",
+      "wix-vs-web-designer",
+    ],
+    mockup: {
+      domain: "northbeltservicepros.com",
+      brandLabel: "Northbelt Service Pros",
+      navItems: ["Services", "Areas", "About", "Reviews", "Book"],
+      heroHeadline: "Home services for Northern Virginia, done right the first time.",
+      heroSubhead:
+        "Plumbing, HVAC, electrical, and handyman work for homeowners across Arlington, Alexandria, and Fairfax.",
+      primaryAction: "Request a Free Estimate",
+      secondaryAction: "Call (703) 555-0102",
+      services: [
+        { label: "Plumbing", note: "Leaks, water heaters, fixture installs, repairs." },
+        { label: "HVAC", note: "Tune-ups, repairs, system installs, indoor air quality." },
+        { label: "Electrical", note: "Outlets, panels, lighting, troubleshooting." },
+      ],
+      trustStrip: [
+        "Licensed in VA",
+        "Insured",
+        "Same-week scheduling",
+        "12+ years",
+      ],
+      formTitle: "Request a free estimate",
+      formRows: ["Your name and ZIP", "Service needed", "What is going on?"],
+      formNote: "We reply same business day. No drive-by sales pitch.",
+    },
+    ctaHeadline:
+      "Want a home service website built around how your customers actually search and contact you?",
+  },
+
   /* ---------- Drafts (data only, not published) ---------- */
   { slug: "hvac", industryName: "HVAC Company", pluralName: "HVAC Companies", draft: true },
-  { slug: "dentists", industryName: "Dentist", pluralName: "Dentists", draft: true },
   { slug: "cleaning-companies", industryName: "Cleaning Company", pluralName: "Cleaning Companies", draft: true },
   { slug: "pressure-washing", industryName: "Pressure Washing Business", pluralName: "Pressure Washing Businesses", draft: true },
-  { slug: "restaurants", industryName: "Restaurant", pluralName: "Restaurants", draft: true },
   { slug: "accountants", industryName: "Accountant", pluralName: "Accountants and CPAs", draft: true },
   { slug: "veterinarians", industryName: "Veterinarian", pluralName: "Veterinarians", draft: true },
   { slug: "locksmiths", industryName: "Locksmith", pluralName: "Locksmiths", draft: true },

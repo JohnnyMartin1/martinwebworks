@@ -64,19 +64,37 @@ export const FAQS: FAQ[] = [
     category: "Hosting and Ownership",
     question: "Who owns the website after launch?",
     answer:
-      "You do. You own the domain, the content, and you are free to take the site elsewhere if our relationship ever stops working. We do not lock you in.",
+      "You do. You own the domain, the content, and the work product. You are free to take the site elsewhere if our relationship ever stops working.",
+  },
+  {
+    category: "Hosting and Ownership",
+    question: "Do I own my domain and content?",
+    answer:
+      "Yes. Your domain stays in your name and your content stays yours. If you ever leave, we can help transfer the site or move the domain to another setup. There is no exit fee.",
+  },
+  {
+    category: "Hosting and Ownership",
+    question: "Is monthly care required?",
+    answer:
+      "Every website build includes a 6-month launch care period so the site stays hosted, secure, updated, and supported during the most important first months after launch. After that, you can continue month-to-month, change plans, or request a clean handoff.",
+  },
+  {
+    category: "Hosting and Ownership",
+    question: "What happens after the 6-month launch care period?",
+    answer:
+      "Three options. Continue month-to-month on the same plan, change to a different care plan that fits how the site is actually being used, or request a clean handoff. There is no auto-renewal trap and no exit fee.",
+  },
+  {
+    category: "Hosting and Ownership",
+    question: "Can I cancel monthly care?",
+    answer:
+      "After the 6-month launch care period, yes — month-to-month with 30 days notice. Your site stays up. You either move it to your own hosting (we help with the transition) or stay on a smaller hosting-only arrangement.",
   },
   {
     category: "Hosting and Ownership",
     question: "Can I update the site myself?",
     answer:
       "Most clients do not want to. With a monthly care plan, you email what changed and we update it. If you really want to do edits yourself, we can structure the build that way during scoping.",
-  },
-  {
-    category: "Hosting and Ownership",
-    question: "What if I want to cancel a care plan?",
-    answer:
-      "Cancel any time with 30 days notice. Your site stays up. You either move it to your own hosting (we will help with the transition) or pay a small monthly hosting-only fee.",
   },
 
   // Lead generation
@@ -130,7 +148,7 @@ export const FAQS: FAQ[] = [
     category: "General",
     question: "Do you only work with certain industries?",
     answer:
-      "We work with local service businesses: home services, trades, auto, medical and dental practices, vet clinics, law and accounting offices, and restaurants. If you are a national e-commerce brand or a venture-backed startup, we are not the right fit.",
+      "We work with service businesses across the U.S.: home services, trades, auto, medical practices, vet clinics, med spas, law and accounting offices, and restaurants — owner-led companies where calls, quote requests, and bookings drive the month. If you are a national e-commerce brand or a venture-backed startup, we are not the right fit.",
   },
 ];
 

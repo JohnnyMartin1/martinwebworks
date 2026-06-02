@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 import {
   getPublishedIndustries,
@@ -58,11 +58,13 @@ export async function generateMetadata({
       description: industry.metaDescription,
       url,
       type: "article",
+      images: SHARE_IMAGES,
     },
     twitter: {
       card: "summary_large_image",
       title: industry.metaTitle,
       description: industry.metaDescription,
+      images: SHARE_IMAGES,
     },
   };
 }

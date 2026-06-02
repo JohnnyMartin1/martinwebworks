@@ -29,7 +29,7 @@ import {
   getExampleConceptBySlug,
   type ExampleConcept,
 } from "@/app/data/exampleConcepts";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 /* ----------------------------------------------------------
    Next.js 16 — params is a Promise in app router pages.
@@ -60,11 +60,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: concept.meta.description,
       url: `/examples/${concept.slug}`,
       type: "article",
+      images: SHARE_IMAGES,
     },
     twitter: {
       card: "summary_large_image",
       title: concept.meta.title,
       description: concept.meta.description,
+      images: SHARE_IMAGES,
     },
   };
 }
@@ -542,8 +544,9 @@ function MobilePreviewSection({
             Designed for the phone in {concept.industryShort === "law firms" ? "a client's" : "a customer's"} hand.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            Local-business searches happen on phones. The mobile layout is the
-            primary layout — not an afterthought scaled down from desktop.
+            Most service-business searches happen on phones. The mobile layout
+            is the primary layout — not an afterthought scaled down from
+            desktop.
           </p>
           <ul className="mt-6 grid gap-2.5">
             <li className="flex items-start gap-2.5 text-[0.95rem] text-[var(--ink-navy)]">
@@ -563,16 +566,15 @@ function MobilePreviewSection({
 
         <div className="flex justify-center lg:justify-self-end">
           <PhoneFrame>
-            <div className="px-4 pt-2 pb-4">
-              <SiteMockup
-                businessName={base.name}
-                tagline={concept.hero.siteTagline}
-                primaryCta={concept.hero.siteCta}
-                serviceLabels={concept.hero.services}
-                palette={base.palette}
-                showPhoneNumber={false}
-              />
-            </div>
+            <SiteMockup
+              businessName={base.name}
+              tagline={concept.hero.siteTagline}
+              primaryCta={concept.hero.siteCta}
+              serviceLabels={concept.hero.services}
+              palette={base.palette}
+              showPhoneNumber={false}
+              compact
+            />
           </PhoneFrame>
         </div>
       </div>
@@ -789,7 +791,7 @@ function FinalCTA({ concept }: { concept: ExampleConcept }) {
   return (
     <CTASection
       headline={`Want a site structured like this for your ${concept.industryShort === "law firms" ? "firm" : "business"}?`}
-      body="Book a free 30-minute audit. We will look at your current site (or your situation) and walk through what a build like this would look like for you."
+      body="Book a free website audit. We will review your current site (or your situation) and walk through what a build like this would look like for your business."
       primaryLabel="Book Free Website Audit"
       secondary={{ label: "Explore Features", href: "/features" }}
     />

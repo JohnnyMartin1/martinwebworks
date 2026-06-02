@@ -368,7 +368,7 @@ export function AuditForm({
               disabled={submitting}
               aria-busy={submitting || undefined}
             >
-              {submitting ? "Sending…" : "Request My Free Audit"}
+              {submitting ? "Sending…" : "Book My Free Website Audit"}
               {submitting ? null : <ArrowRight />}
             </Button>
             <p className="text-xs text-[var(--warm-ash)]">

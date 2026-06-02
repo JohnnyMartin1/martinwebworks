@@ -5,20 +5,28 @@ import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { FaqAccordion } from "@/app/components/features/FaqAccordion";
 import { FaqJsonLd } from "@/app/components/seo/JsonLd";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 import { FAQS } from "@/app/data/faqs";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Answers to common questions about Martin Web Works pricing, packages, process, ownership, monthly care, lead generation, and the AI assistant add-on.",
+    "Answers to common questions about Martin Web Works pricing, packages, process, ownership, ongoing care, lead generation, and the AI assistant add-on.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: "Martin Web Works FAQ",
     description:
-      "Pricing, packages, process, ownership, monthly care, lead generation, and the AI assistant.",
+      "Pricing, packages, process, ownership, ongoing care, lead generation, and the AI assistant.",
     url: "/faq",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Martin Web Works FAQ",
+    description:
+      "Pricing, packages, process, ownership, care, leads, and AI — answered.",
+    images: SHARE_IMAGES,
   },
 };
 

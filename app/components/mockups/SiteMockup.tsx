@@ -15,6 +15,11 @@ type SiteMockupProps = {
   serviceLabels: [string, string, string];
   palette: SiteMockupPalette;
   showPhoneNumber?: boolean;
+  /**
+   * When true, the mockup uses tighter padding and smaller type so it reads
+   * at phone scale inside a `PhoneFrame`. Default false (desktop card scale).
+   */
+  compact?: boolean;
 };
 
 /**
@@ -29,6 +34,7 @@ export function SiteMockup({
   serviceLabels,
   palette,
   showPhoneNumber = true,
+  compact = false,
 }: SiteMockupProps) {
   const surface = palette.surface;
   const onDark = isDark(surface);
@@ -41,9 +47,14 @@ export function SiteMockup({
   const accentInk = onDark ? "#ffffff" : palette.ink;
 
   return (
-    <div className="p-6 sm:p-8" style={styles}>
+    <div className={compact ? "p-4" : "p-6 sm:p-8"} style={styles}>
       <header className="flex items-center justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: palette.accent }}>
+        <span
+          className={`font-semibold uppercase tracking-[0.14em] ${
+            compact ? "text-[10px]" : "text-[11px]"
+          }`}
+          style={{ color: palette.accent }}
+        >
           {firstWord(businessName)}
         </span>
         {showPhoneNumber ? (
@@ -58,21 +69,29 @@ export function SiteMockup({
       </header>
 
       <h3
-        className="mt-6 text-[1.5rem] sm:text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.018em]"
+        className={`font-semibold tracking-[-0.018em] ${
+          compact
+            ? "mt-4 text-[0.95rem] leading-[1.15]"
+            : "mt-6 text-[1.5rem] sm:text-[1.85rem] leading-[1.05]"
+        }`}
         style={{ color: accentInk }}
       >
         {tagline}
       </h3>
 
-      <div className="mt-5 flex items-center gap-2.5">
+      <div className={`flex items-center gap-2 ${compact ? "mt-3" : "mt-5"}`}>
         <span
-          className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[11px] font-medium"
+          className={`inline-flex items-center gap-1.5 rounded-full font-medium ${
+            compact ? "px-2.5 py-1 text-[9px]" : "px-3.5 py-1.5 text-[11px]"
+          }`}
           style={{ backgroundColor: palette.accent, color: surface }}
         >
           {primaryCta}
         </span>
         <span
-          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium border"
+          className={`inline-flex items-center gap-1.5 rounded-full font-medium border ${
+            compact ? "px-2 py-1 text-[9px]" : "px-3 py-1.5 text-[11px]"
+          }`}
           style={{
             borderColor: hex(palette.ink, 0.18),
             color: palette.ink,
@@ -83,27 +102,33 @@ export function SiteMockup({
         </span>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-2">
+      <div className={`grid grid-cols-3 gap-1.5 ${compact ? "mt-4" : "mt-6"}`}>
         {serviceLabels.map((label, i) => (
           <div
             key={label}
-            className="rounded-xl p-3"
+            className={`rounded-lg ${compact ? "p-2" : "p-3"}`}
             style={{
               backgroundColor: i === 1 ? palette.accentSoft : palette.surfaceDeep,
               color: i === 1 ? palette.accent : palette.ink,
             }}
           >
             <div
-              className="h-1.5 w-6 rounded-full mb-2"
+              className={`rounded-full ${compact ? "h-1 w-5 mb-1.5" : "h-1.5 w-6 mb-2"}`}
               style={{ backgroundColor: i === 1 ? palette.accent : hex(palette.ink, 0.3) }}
             />
-            <p className="text-[10px] font-semibold leading-tight">{label}</p>
+            <p
+              className={`font-semibold leading-tight ${
+                compact ? "text-[8px]" : "text-[10px]"
+              }`}
+            >
+              {label}
+            </p>
             <div
-              className="mt-2 h-0.5 w-full rounded-full"
+              className={`rounded-full ${compact ? "mt-1.5 h-px w-full" : "mt-2 h-0.5 w-full"}`}
               style={{ backgroundColor: hex(palette.ink, 0.12) }}
             />
             <div
-              className="mt-1 h-0.5 w-3/4 rounded-full"
+              className={`rounded-full ${compact ? "mt-1 h-px w-3/4" : "mt-1 h-0.5 w-3/4"}`}
               style={{ backgroundColor: hex(palette.ink, 0.12) }}
             />
           </div>
@@ -111,11 +136,22 @@ export function SiteMockup({
       </div>
 
       <footer
-        className="mt-6 flex items-center justify-between rounded-xl px-3 py-2.5"
+        className={`flex items-center justify-between rounded-lg ${
+          compact ? "mt-4 px-2.5 py-1.5" : "mt-6 px-3 py-2.5"
+        }`}
         style={{ backgroundColor: palette.surfaceDeep, color: palette.ink }}
       >
-        <span className="text-[10px] font-medium opacity-80">★ ★ ★ ★ ★ 4.9 (122 reviews)</span>
-        <span className="text-[10px] font-medium opacity-70">Get a quote →</span>
+        <span
+          className={`font-medium opacity-80 ${compact ? "text-[8px]" : "text-[10px]"}`}
+          aria-label="Sample five-star rating block"
+        >
+          ★ ★ ★ ★ ★
+        </span>
+        <span
+          className={`font-medium opacity-70 ${compact ? "text-[8px]" : "text-[10px]"}`}
+        >
+          Get a quote →
+        </span>
       </footer>
     </div>
   );

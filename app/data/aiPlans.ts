@@ -43,7 +43,7 @@ export const AI_PLANS: AIPlan[] = [
       "Quarterly script tuning included",
     ],
     bestFor:
-      "Best for appointment-based businesses (dental, vet, med spa, law, accounting) that want a structured intake before the phone rings.",
+      "Best for appointment-based service businesses (med spa, vet, law, accounting, and similar practices) that want a structured intake before the phone rings.",
   },
 ];
 

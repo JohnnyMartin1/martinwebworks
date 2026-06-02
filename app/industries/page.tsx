@@ -4,22 +4,30 @@ import { PageHero } from "@/app/components/ui/PageHero";
 import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 import { getPublishedIndustries } from "@/app/data/industries";
 import { IndustryCard } from "@/app/components/seo/IndustryCard";
 import { Checklist } from "@/app/components/seo/Checklist";
 
 export const metadata: Metadata = {
-  title: "Industry-Specific Websites for Local Businesses",
+  title: "Industry-Specific Websites for Service Businesses",
   description:
-    "Website guides built around how customers actually search and contact local service businesses. Roofers, contractors, electricians, plumbers, med spas, law firms, and more.",
+    "Website growth guides for service businesses across the U.S. — roofers, contractors, electricians, plumbers, landscapers, med spas, law firms, and other quote- or appointment-driven companies.",
   alternates: { canonical: "/industries" },
   openGraph: {
-    title: "Industry-Specific Websites for Local Businesses",
+    title: "Industry-Specific Websites for Service Businesses",
     description:
-      "Website guides built around how customers actually search and contact local service businesses.",
+      "Website growth guides built around how customers actually search and contact service businesses — roofers, contractors, med spas, law firms, and more.",
     url: "/industries",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industry-Specific Websites for Service Businesses",
+    description:
+      "Growth-focused website guides for service businesses across the U.S.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -49,8 +57,8 @@ export default function IndustriesIndexPage() {
     <>
       <PageHero
         eyebrow="Industries"
-        headline="Website builds for local service businesses."
-        lead="See how different local businesses can structure a website around calls, quote requests, booking, trust, and local search."
+        headline="Website builds for service businesses across the U.S."
+        lead="We build conversion-focused websites for roofers, contractors, electricians, plumbers, landscapers, med spas, law firms, and other quote- or appointment-driven service businesses — remotely, with a process built to scale across industries."
         actions={
           <>
             <Button
@@ -106,7 +114,7 @@ export default function IndustriesIndexPage() {
             Every published industry guide.
           </h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            Each guide is shaped around how customers in that industry actually search, compare, and book. We publish a guide when we have something specific to say about it. The rest we are still drafting.
+            Each guide is shaped around how customers in that industry actually search, compare, and book. We publish a guide when we have something specific to say about it — the rest we are still drafting.
           </p>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -123,10 +131,10 @@ export default function IndustriesIndexPage() {
           <div>
             <p className="t-label text-[var(--warm-ash)]">The essentials</p>
             <h2 className="t-headline mt-3 max-w-[440px]">
-              What most local business websites need, regardless of industry.
+              What most service-business websites need, regardless of industry.
             </h2>
             <p className="t-body mt-5 text-[var(--warm-ash)]">
-              The industry-specific details matter, but the shared list is short. Most local business websites win or lose on these ten things.{" "}
+              The industry-specific details matter, but the shared list is short. Most service-business websites win or lose on these ten things.{" "}
               <Link
                 href="/resources/website-not-getting-leads"
                 className="text-[var(--ink-navy)] underline decoration-[var(--signal-blue)] underline-offset-4 hover:text-[var(--signal-blue)]"
@@ -141,8 +149,8 @@ export default function IndustriesIndexPage() {
       </Section>
 
       <CTASection
-        headline="Not sure what your business site needs?"
-        body="Book a free 30-minute audit. We will look at your current site (or your situation if you do not have one) and walk through what we would do, plainly. No pitch."
+        headline="Not sure what your business website needs?"
+        body="Book a free website audit. We will review your current site (or your situation if you do not have one yet) and walk through where the next leads are sitting on the table. Plainly, with no pitch."
         primaryLabel="Book Free Website Audit"
         secondary={{ label: "View Packages", href: "/packages" }}
       />

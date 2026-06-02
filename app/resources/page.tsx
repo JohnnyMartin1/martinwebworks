@@ -4,7 +4,7 @@ import { PageHero } from "@/app/components/ui/PageHero";
 import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 import {
   getPublishedResources,
@@ -14,16 +14,24 @@ import { getPublishedIndustries } from "@/app/data/industries";
 import { ResourceCard } from "@/app/components/seo/ResourceCard";
 
 export const metadata: Metadata = {
-  title: "Resources for Local Business Websites",
+  title: "Resources for Service-Business Websites",
   description:
-    "Plain-English guides for local business owners on website costs, lead generation, local SEO, and what to fix before spending on ads. Written by Martin Web Works.",
+    "Plain-English guides for service-business owners on website costs, lead generation, local SEO, and what to fix before spending on ads. Written by Martin Web Works.",
   alternates: { canonical: "/resources" },
   openGraph: {
-    title: "Resources for Local Business Websites",
+    title: "Resources for Service-Business Websites",
     description:
       "Plain-English guides on website costs, lead generation, local SEO, and what to fix before spending on ads.",
     url: "/resources",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Resources for Service-Business Websites",
+    description:
+      "Plain-English guides for service-business owners on websites that actually produce leads.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -55,8 +63,8 @@ export default function ResourcesIndexPage() {
     <>
       <PageHero
         eyebrow="Resources"
-        headline="Website guides for local businesses that want more calls and quote requests."
-        lead="Plain-English advice on what your website should include, what hurts trust, and how to turn more visitors into customers."
+        headline="Website guides for service businesses that want more inquiries."
+        lead="Plain-English advice on what your website should include, what hurts trust, and how to turn more visitors into calls, quote requests, and bookings."
         actions={
           <>
             <Button

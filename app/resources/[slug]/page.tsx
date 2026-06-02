@@ -6,7 +6,7 @@ import { Container } from "@/app/components/ui/Container";
 import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 import {
   getPublishedResourceBySlug,
@@ -54,11 +54,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: resource.publishDate,
       modifiedTime: resource.updatedDate,
+      images: SHARE_IMAGES,
     },
     twitter: {
       card: "summary_large_image",
       title: resource.metaTitle,
       description: resource.metaDescription,
+      images: SHARE_IMAGES,
     },
   };
 }

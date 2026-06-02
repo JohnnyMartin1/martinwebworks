@@ -5,32 +5,34 @@ import { Section } from "@/app/components/ui/Section";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { CheckIcon } from "@/app/components/ui/Icons";
 import { AuditForm } from "@/app/components/features/AuditForm";
-import { SITE, SCHEDULING_URL, HAS_SCHEDULING } from "@/app/data/site";
+import { SITE, SCHEDULING_URL, HAS_SCHEDULING, SHARE_IMAGES } from "@/app/data/site";
 
 export const metadata: Metadata = {
-  title: "Free Website Audit for Local Businesses",
+  title: "Free Website Audit for Service Businesses",
   description:
-    "Book a free 30-minute website audit. Pick a time on the calendar or send the form and we'll reply by email within one business day. Plain English. No pitch.",
+    "Book a free 30-minute website audit. We'll review your current site, identify missed opportunities, and show where your website could be producing more inquiries. Book a time or send the form.",
   alternates: { canonical: "/free-audit" },
   openGraph: {
     title: "Free Website Audit · Martin Web Works",
     description:
-      "Free 30-minute website audit for local service businesses. Book a time or send the form. Plain English. No pitch.",
+      "A free 30-minute website audit for service businesses. Tell us about your business and where you want more inquiries.",
     url: "/free-audit",
     type: "website",
+    images: SHARE_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Website Audit · Martin Web Works",
     description:
-      "A free 30-minute review of your local-business website. Book a time or send the form.",
+      "A free 30-minute review of where your website could be producing more inquiries.",
+    images: SHARE_IMAGES,
   },
 };
 
 const SCHEDULE_BULLETS = [
   "30-minute website audit",
-  "Review your current site or business needs",
-  "Plain-English recommendations",
+  "Review of current site or growth situation",
+  "Plain-English findings and next-step priorities",
   "No pressure and no automated sales sequence",
 ];
 
@@ -43,23 +45,23 @@ const FORM_BULLETS = [
 const NEXT_STEPS = [
   {
     n: "01",
-    title: "Send the request or book a time",
-    body: "Either path reaches the same inbox. Pick whichever feels easier right now.",
+    title: "Tell us about your business",
+    body: "Either path reaches the same inbox. Share your business, your service area, and where you want more inquiries.",
   },
   {
     n: "02",
     title: "We review your site or situation",
-    body: "Before the call, we look at your existing site (or your competition if you don't have one yet) and write down what is helping and what is hurting.",
+    body: "Before the call, we review your existing site (or your competition if you do not have one yet), identify missed opportunities, and map where your website could be producing more inquiries.",
   },
   {
     n: "03",
     title: "We confirm by email",
-    body: "You get a real reply within one business day. If you booked a time, it's already on the calendar.",
+    body: "You get a real reply within one business day. If you booked a time, it is already on the calendar.",
   },
   {
     n: "04",
-    title: "You get a plain-English priority list",
-    body: "After the call, you receive a short written summary: what we would fix first, second, third. No proposal pressure.",
+    title: "You get a written growth-priority list",
+    body: "After the call, you receive a short written summary: what we would fix first, second, third, tied to where the next leads are sitting on the table. No proposal pressure.",
   },
 ];
 
@@ -83,12 +85,10 @@ export default function FreeAuditPage() {
         <div className="max-w-[560px]">
           <p className="t-label">What happens next</p>
           <h2 className="t-headline mt-3">
-            Four steps from request to priority list.
+            Four steps from request to written growth-priority list.
           </h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            No sales sequence. No pressure to commit on the call. The whole
-            point of the audit is to leave you better-informed about your own
-            website, whether or not you ever work with us.
+            No sales sequence. No pressure to commit on the call. The point of the audit is to leave you better-informed about where your website could be producing more inquiries, whether or not you ever work with us.
           </p>
         </div>
 
@@ -122,6 +122,12 @@ export default function FreeAuditPage() {
           with your business name and website (if you have one). We&apos;ll
           reply.
         </p>
+        <p className="mt-3 text-[0.78rem] leading-relaxed text-[var(--warm-ash-soft)]">
+          Pricing, packages, and care options are explained before any work
+          begins. Every build includes a 6-month launch care period; after
+          that, you continue month-to-month, change plans, or request a clean
+          handoff.
+        </p>
       </Section>
     </>
   );
@@ -136,18 +142,18 @@ function Hero() {
     <header className="bg-[var(--cream-paper)] pt-16 pb-12 sm:pt-20 sm:pb-14 lg:pt-28 lg:pb-16 hairline-bottom">
       <Container>
         <div className="max-w-[720px]">
-          <p className="t-label text-[var(--warm-ash)]">Free audit</p>
+          <p className="t-label text-[var(--warm-ash)]">Free website audit</p>
           <h1 className="t-display mt-5">Book a free website audit.</h1>
           <p className="t-lead mt-6">
             {HAS_SCHEDULING
-              ? "Choose a time on the calendar or send the form and we’ll reply by email — whichever fits your day."
-              : "Send the form and we’ll reply by email within one business day."}
+              ? "Choose a time on the calendar or send the form. Whichever fits your day. We reply to every submission by email within one business day."
+              : "Send the form and we&rsquo;ll reply by email within one business day."}
           </p>
           <p className="mt-4 text-[0.9rem] text-[var(--warm-ash)]">
-            A 30-minute conversation to review your current site (or your
-            situation if you don&apos;t have one), what is helping, what is
-            hurting, and what to do next. Email is the fastest way to reach
-            the studio.
+            Tell us about your business and where you want more inquiries. We&apos;ll review your current site (or your situation if you do not have one yet), identify missed opportunities, and show where your website could be producing more inquiries. No pitch.
+          </p>
+          <p className="mt-4 text-[0.85rem] text-[var(--warm-ash-soft)]">
+            We are currently expanding project capacity and accepting a limited number of new service-business website builds each month to keep launch quality high.
           </p>
         </div>
       </Container>
@@ -175,7 +181,7 @@ function SchedulingPanel() {
         id="schedule-heading"
         className="mt-3 text-[1.5rem] sm:text-[1.7rem] font-semibold tracking-[-0.014em] text-[var(--ink-navy)]"
       >
-        Book a time now.
+        Book a website audit time.
       </h2>
       <p className="mt-3 text-[0.975rem] leading-relaxed text-[var(--warm-ash)]">
         Pick a 30-minute audit slot and get a calendar confirmation.
@@ -202,7 +208,7 @@ function SchedulingPanel() {
         className="mt-5 w-full"
         data-cta="scheduling_free_audit"
       >
-        Book a Free Audit Call
+        Book Free Website Audit
         <ArrowRight />
       </Button>
       <p className="mt-2.5 text-center text-[0.78rem] text-[var(--warm-ash)]">
@@ -279,11 +285,10 @@ function FormPanel() {
         id="form-heading"
         className="mt-3 text-[1.5rem] sm:text-[1.7rem] font-semibold tracking-[-0.014em] text-[var(--ink-navy)]"
       >
-        Send the audit request form.
+        Send the website audit request form.
       </h2>
       <p className="mt-3 text-[0.975rem] leading-relaxed text-[var(--warm-ash)]">
-        Better if you want to explain your business first. We&apos;ll review
-        before the call.
+        Better if you want to explain your business and where you want more inquiries first. We&apos;ll review before the call.
       </p>
       <ul className="mt-6 grid gap-2.5">
         {FORM_BULLETS.map((b) => (

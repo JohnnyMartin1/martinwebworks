@@ -6,7 +6,7 @@ import { SiteFooter } from "@/app/components/site/SiteFooter";
 import { MobileStickyCTA } from "@/app/components/site/MobileStickyCTA";
 import { Analytics } from "@/app/components/site/Analytics";
 import { ScrollToTopOnNavigation } from "@/app/components/site/ScrollToTopOnNavigation";
-import { SITE } from "@/app/data/site";
+import { SITE, SHARE_IMAGES } from "@/app/data/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,23 +23,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://martinwebworks.com"),
   title: {
-    default: `${SITE.name} — Websites for local businesses`,
+    default: `${SITE.name} — Conversion-focused websites for service businesses`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
   applicationName: SITE.name,
   openGraph: {
-    title: `${SITE.name} — Websites for local businesses`,
+    title: `${SITE.name} — Conversion-focused websites for service businesses`,
     description: SITE.description,
     url: "/",
     siteName: SITE.name,
     locale: "en_US",
     type: "website",
+    images: SHARE_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — Websites for local businesses`,
+    title: `${SITE.name} — Conversion-focused websites for service businesses`,
     description: SITE.description,
+    images: SHARE_IMAGES,
   },
   robots: {
     index: true,

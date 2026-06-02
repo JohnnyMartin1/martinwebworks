@@ -11,20 +11,29 @@ import {
   HAS_PHONE,
   PHONE_HREF,
   PHONE_NUMBER,
+  SHARE_IMAGES,
   SITE,
 } from "@/app/data/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Martin Web Works. Free website audits, general questions, monthly care help. We reply within one business day.",
+    "Contact Martin Web Works. Book a free website audit, ask about packages, or reach the studio about ongoing care. We reply within one business day.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Martin Web Works",
     description:
-      "Free audits, questions, and existing-site help. We reply within one business day.",
+      "Free website audits, project questions, and existing-site help. We reply within one business day.",
     url: "/contact",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Martin Web Works",
+    description:
+      "Free website audits, project questions, and existing-site help.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -41,9 +50,9 @@ const ROUTES: ContactRoute[] = [
     label: "Best starting point for new projects",
     title: "Free Website Audit",
     body:
-      "Book a time or send the form. A 30-minute conversation about your current site (or your situation if you do not have one). What is helping, what is hurting, what we would fix first. No pitch.",
+      "Book a time or send the form. A 30-minute conversation about your current site (or your situation if you do not have one yet). Where the website is helping, where it is hurting, and where the next leads are sitting on the table. No pitch.",
     primary: {
-      label: "Book or send the form",
+      label: "Book Free Website Audit",
       href: BOOK_AUDIT_HREF,
       external: BOOK_AUDIT_IS_EXTERNAL,
     },
@@ -51,22 +60,22 @@ const ROUTES: ContactRoute[] = [
   },
   {
     label: "Already know what you want",
-    title: "General questions",
+    title: "Project & package questions",
     body:
-      "Pricing, packages, timelines, what we do and do not take on. Send a short note; we reply within one business day.",
+      "Pricing, packages, timelines, the kinds of service businesses we are built for. Send a short note; we reply within one business day.",
     primary: {
       label: `Email ${SITE.email}`,
-      href: `mailto:${SITE.email}?subject=Question`,
+      href: `mailto:${SITE.email}?subject=Project%20question`,
     },
     secondary: { label: "Read the FAQ first", href: "/faq" },
   },
   {
     label: "Existing client",
-    title: "Monthly Care and edits",
+    title: "Care plan and edits",
     body:
-      "On a care plan and need an edit, a new photo, or a small page change? Email the change and we handle it.",
+      "On a care plan and need an edit, a new photo, an updated service, or a small page change? Email the change and we handle it.",
     primary: {
-      label: `Email care@... or ${SITE.email}`,
+      label: "Email the studio",
       href: `mailto:${SITE.email}?subject=Care%20plan%20edit`,
     },
     secondary: { label: "About monthly care", href: "/monthly-care" },
@@ -79,13 +88,14 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         headline="Contact Martin Web Works."
-        lead="Three reasons people usually write in. Pick whichever fits, or just email us directly."
+        lead="Three reasons people usually write in. Pick whichever fits, or just email us directly. We are currently expanding project capacity for new service-business website builds."
         actions={
           <>
             <Button
               href={BOOK_AUDIT_HREF}
               external={BOOK_AUDIT_IS_EXTERNAL}
               size="lg"
+              data-cta="book_audit_hero"
             >
               Book Free Website Audit
               <ArrowRight />
@@ -146,7 +156,7 @@ export default function ContactPage() {
             <p className="t-label text-[var(--warm-ash)]">Direct contact</p>
             <h2 className="t-headline mt-3">Or skip the routing entirely.</h2>
             <p className="t-body mt-4 text-[var(--warm-ash)]">
-              Email is the fastest way to reach the studio. We answer in one business day, often faster. We do not run a call center, a phone tree, or a ticketing system.
+              Email is the fastest way to reach the studio. A real specialist replies within one business day, often faster. No call center, no phone tree, no ticketing system.
             </p>
           </div>
 
@@ -192,7 +202,7 @@ export default function ContactPage() {
           <ul className="grid gap-3">
             <PrepRow
               label="Current website"
-              body="If you already have a site, the URL. If not, just say so — that is a different conversation."
+              body="If you already have a site, the URL. If not, just say so. That is a different conversation."
             />
             <PrepRow
               label="Business type"
@@ -208,15 +218,15 @@ export default function ContactPage() {
             />
             <PrepRow
               label="Any examples you like"
-              body="Links to websites you respect — competitors, other industries, anything. We will tell you what is worth borrowing."
+              body="Links to websites you respect. Competitors, other industries, anything. We will tell you what is worth borrowing."
             />
           </ul>
         </div>
       </Section>
 
       <CTASection
-        headline="Best place to start is the free audit."
-        body="A 30-minute look at your current site or your situation. Plain English. No pitch."
+        headline="Best place to start is the free website audit."
+        body="A 30-minute review of your current site or your situation, and where your website could be producing more inquiries. Plain English. No pitch."
         primaryLabel="Book Free Website Audit"
         secondary={{ label: `Email ${SITE.email}`, href: `mailto:${SITE.email}` }}
       />

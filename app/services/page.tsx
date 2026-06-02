@@ -8,41 +8,57 @@ import { Card } from "@/app/components/ui/Card";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { CheckIcon } from "@/app/components/ui/Icons";
 import { SERVICES } from "@/app/data/services";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
+import { ServiceListJsonLd } from "@/app/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Services for Local Business Websites",
+  title: "Services for Service-Business Websites",
   description:
-    "Custom website design, build, hosting, and monthly care for local service businesses. Built around calls, quote requests, mobile speed, and ongoing updates.",
+    "Conversion-focused website builds, search structure, lead capture, booking flows, AI assistants, and ongoing care for service businesses across the U.S. Built as one growth system.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services · Martin Web Works",
     description:
-      "Design, build, host, and maintain — what a local-business website actually needs to keep earning.",
+      "Strategy, conversion-focused design, search structure, lead capture, booking, and ongoing care. What a service-business website actually needs to keep producing leads.",
     url: "/services",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services · Martin Web Works",
+    description:
+      "Conversion-focused website services for service businesses, built as a growth system.",
+    images: SHARE_IMAGES,
   },
 };
 
-const SITE_OBJECTIVES = [
-  "Load quickly on mobile",
-  "Make calls and quote requests obvious",
-  "Explain your services clearly",
-  "Build trust before customers call",
-  "Send form submissions to the right inbox",
-  "Stay easy to update after launch",
+/**
+ * Growth outcomes — the customer-facing reasons businesses bring us in.
+ * Used in the "What every site is built to do" section so service feature
+ * lists tie back to a measurable business result instead of design jargon.
+ */
+const GROWTH_OUTCOMES = [
+  "Generate more calls and direct inquiries",
+  "Capture quote requests with structured intake",
+  "Book more appointments without back-and-forth",
+  "Build trust before the first phone call",
+  "Show up better in local and service-area searches",
+  "Reduce missed opportunities with forms, booking, and AI",
+  "Keep the site current and converting after launch",
 ];
 
 export default function ServicesPage() {
   return (
     <>
+      <ServiceListJsonLd services={SERVICES} />
       <PageHero
         eyebrow="Services"
-        headline="What we build, host, and maintain."
-        lead="You should not need five vendors and three logins to keep a local business website running. We design it, launch it, and keep it current."
+        headline="Website services built around business growth, not deliverables."
+        lead="A conversion-focused website is a system, not a screen. We assemble strategy, design, search structure, lead capture, booking, and ongoing care into one accountable engagement."
         actions={
           <>
-            <Button href={BOOK_AUDIT_HREF} external={BOOK_AUDIT_IS_EXTERNAL} size="lg">
+            <Button href={BOOK_AUDIT_HREF} external={BOOK_AUDIT_IS_EXTERNAL} size="lg" data-cta="book_audit_hero">
               Book Free Website Audit
               <ArrowRight />
             </Button>
@@ -76,14 +92,14 @@ export default function ServicesPage() {
       <Section tone="paper" hairline="bottom">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
           <div className="max-w-[460px]">
-            <p className="t-label">Every site we ship</p>
-            <h2 className="t-headline mt-3">What every site is built to do.</h2>
+            <p className="t-label">What every build is for</p>
+            <h2 className="t-headline mt-3">Seven outcomes every engagement is measured against.</h2>
             <p className="t-body mt-4 text-[var(--warm-ash)]">
-              Different businesses need different content. Every site we ship has the same six commitments underneath it.
+              Different industries need different content. The growth outcomes underneath are the same, and they are how we evaluate whether a build is doing its job.
             </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
-            {SITE_OBJECTIVES.map((goal) => (
+            {GROWTH_OUTCOMES.map((goal) => (
               <li
                 key={goal}
                 className="flex items-start gap-2.5 rounded-xl bg-[var(--cream-deep)] p-4 text-[0.95rem] text-[var(--ink-navy)]"
@@ -95,8 +111,8 @@ export default function ServicesPage() {
           </ul>
         </div>
         <p className="mt-10 text-[0.95rem] text-[var(--warm-ash)]">
-          Looking for the working pieces — quote forms, booking, AI assistants,
-          reviews, service-area pages?{" "}
+          Looking for the working pieces: quote forms, booking, AI assistants,
+          service-area pages, reviews?{" "}
           <Link
             href="/features"
             className="font-medium text-[var(--ink-navy)] underline decoration-[var(--signal-blue)] decoration-2 underline-offset-4 hover:text-[var(--signal-blue)]"
@@ -109,7 +125,7 @@ export default function ServicesPage() {
 
       <CTASection
         headline="Not sure which package fits?"
-        body="Book a free audit. We will look at your situation and recommend the right starting point: Starter, Growth, Authority, or nothing yet."
+        body="Book a free website audit. We will review your business and where you want more inquiries, then recommend the right starting point: Starter, Growth, Authority, or honestly tell you a new website is not the right investment yet."
         primaryLabel="Book Free Website Audit"
         secondary={{ label: "View Packages", href: "/packages" }}
       />

@@ -19,35 +19,38 @@ import {
 import { BrowserFrame } from "@/app/components/mockups/BrowserFrame";
 import { LeadNotification } from "@/app/components/mockups/LeadNotification";
 import { SiteMockup } from "@/app/components/mockups/SiteMockup";
-import { PricingPreviewCards } from "@/app/components/pricing/PricingPreviewCards";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 import { EXAMPLES } from "@/app/data/examples";
 import { CARE_PLANS } from "@/app/data/carePlans";
 import { CONCEPT_SLUG_BY_BASE } from "@/app/data/exampleConcepts";
+import { OrganizationJsonLd } from "@/app/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Custom Local Business Websites · Martin Web Works",
+  title: "Conversion-Focused Websites for Service Businesses · Martin Web Works",
   description:
-    "Martin Web Works builds, hosts, and maintains custom websites for local service businesses — roofers, electricians, dentists, law firms, med spas, and more. Free 30-minute website audits.",
+    "Martin Web Works designs, builds, and supports modern websites that turn visitors into customers. Strategy, SEO structure, lead capture, booking flows, and ongoing care built in. Free 30-minute website audits.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Martin Web Works · Websites for Local Businesses",
+    title: "Martin Web Works · Conversion-focused websites for service businesses",
     description:
-      "Custom websites that earn more calls and quote requests for local service businesses. Free 30-minute audit.",
+      "We help service businesses generate more calls, quote requests, bookings, and qualified leads — through better design, SEO structure, lead capture, and ongoing care.",
     url: "/",
     type: "website",
+    images: SHARE_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Martin Web Works",
+    title: "Martin Web Works · Conversion-focused websites for service businesses",
     description:
-      "Custom websites that earn local service businesses more calls and quote requests.",
+      "Strategy, design, SEO structure, lead capture, booking, and ongoing care — built as a system.",
+    images: SHARE_IMAGES,
   },
 };
 
 export default function HomePage() {
   return (
     <>
+      <OrganizationJsonLd />
       <Hero />
       <PurposeBlock />
       <ProblemSolution />
@@ -58,7 +61,7 @@ export default function HomePage() {
       <ProcessGlance />
       <CTASection
         headline="One free audit. One honest conversation."
-        body="Tell us about your business. We will look at your current site (or your situation if you don't have one) and give you a plain assessment in 30 minutes."
+        body="Tell us about your business and where you want more inquiries. We will review your current site (or your situation if you do not have one yet), identify what is working, what is not, and where the next leads are sitting on the table."
       />
     </>
   );
@@ -75,13 +78,13 @@ function Hero() {
           <div className="max-w-[640px]">
             <p className="t-label text-[var(--warm-ash)]">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--success-emerald)] align-middle mr-2" />
-              Booking free audits this month
+              Accepting new service-business builds
             </p>
             <h1 className="t-display mt-5">
-              Websites that earn your business more calls and quote requests.
+              Websites that bring service businesses more calls, quote requests, and booked jobs.
             </h1>
             <p className="t-lead mt-6">
-              A local web studio that builds, hosts, updates, and maintains websites for service businesses. Simple pricing. Clear ownership. No confusing handoff.
+              Custom-built websites for roofers, contractors, dentists, med spas, law firms, restaurants, and other service businesses. Strategy, SEO structure, lead capture, booking, and ongoing care assembled as one system.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
@@ -89,6 +92,7 @@ function Hero() {
                 external={BOOK_AUDIT_IS_EXTERNAL}
                 size="lg"
                 variant="primary"
+                data-cta="book_audit_hero"
               >
                 Book Free Website Audit
                 <ArrowRight />
@@ -97,12 +101,15 @@ function Hero() {
                 View Packages
               </Button>
             </div>
+            <p className="mt-4 text-[0.85rem] text-[var(--warm-ash)]">
+              No sales sequence. No automated drip. One real reply within one business day.
+            </p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {[
-                "Custom website builds from $1,995",
-                "Managed hosting and care from $99/month",
-                "Built for mobile, calls, and quote requests",
-                "Direct work, not an agency funnel",
+                "Strategy, design, SEO, and lead capture as one system",
+                "Quote, booking, and AI-assistant flows built in",
+                "Service-area SEO structure that maps your services to cities",
+                "Ongoing care after launch — never a hand-off and ghost",
               ].map((line) => (
                 <li
                   key={line}
@@ -176,18 +183,18 @@ function PurposeBlock() {
   const commitments = [
     {
       icon: <GlobeIcon className="text-[var(--ink-navy)]" />,
-      title: "We build the site.",
-      body: "A custom, mobile-first website designed around how your customers actually find you and decide to call.",
+      title: "We build the system.",
+      body: "Strategy, design, and development assembled into a conversion-focused website. Not a brochure that sits there looking pretty.",
     },
     {
       icon: <WrenchIcon className="text-[var(--ink-navy)]" />,
-      title: "We host and maintain it.",
-      body: "Hosting, SSL, backups, security, and updates stay handled. One email to one person, not a ticket queue.",
+      title: "We host and harden it.",
+      body: "Managed hosting, SSL, backups, monitoring, and patching stay handled. One specialist email, not a ticket queue.",
     },
     {
       icon: <CalendarIcon className="text-[var(--ink-navy)]" />,
-      title: "We change it when you do.",
-      body: "New hours, new photos, a new service. Email what changed. We update it. Included with care plans.",
+      title: "We tune it after launch.",
+      body: "New services, new locations, new offers. Edits, analytics review, and lead-flow checks are built into ongoing care.",
     },
   ];
 
@@ -196,17 +203,17 @@ function PurposeBlock() {
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
         <div className="max-w-[560px]">
           <h2 className="t-headline">
-            A small studio that builds, hosts, and looks after the whole thing.
+            A website growth partner, not a one-off build.
           </h2>
           <p className="t-lead mt-5">
-            Most local business websites get built once, abandoned, and quietly stop earning. We build sites that work and stay current. You answer the phone; we handle the website.
+            Most service-business websites get built once, handed off, and quietly stop earning by year two. We treat the website as a customer-acquisition system. Designed, measured, and maintained so it keeps producing inquiries long after launch.
           </p>
           <div className="mt-7">
             <Link
               href="/services"
               className="inline-flex items-center gap-2 font-medium text-[var(--ink-navy)] underline decoration-[var(--signal-blue)] decoration-2 underline-offset-4 hover:text-[var(--signal-blue)]"
             >
-              See what we build and maintain
+              See what we build, host, and grow
               <ArrowRight />
             </Link>
           </div>
@@ -243,10 +250,10 @@ function ProblemSolution() {
         <div>
           <p className="t-label">The gap</p>
           <h2 className="t-headline mt-3">
-            Most local businesses lose work to a slightly less-bad website next door.
+            Most service businesses lose work to a slightly less-bad website down the street.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            Customers searching for a roofer, a dentist, an electrician, or a vet do not compare ten sites. They click the first one that loads fast, looks current, and tells them how to call.
+            Customers searching for a roofer, an electrician, a med spa, or a contractor do not compare ten sites. They click the first one that loads fast, explains the service clearly, and tells them how to call, quote, or book.
           </p>
         </div>
 
@@ -256,21 +263,21 @@ function ProblemSolution() {
             tone="rose"
             items={[
               "Slow on mobile, hard to tap",
-              "Hours and services out of date",
+              "Hours, services, and pricing out of date",
               "Phone number buried below the fold",
-              "No quote form or it goes nowhere",
-              "Reads like a 2014 template",
+              "No quote form, or it goes to a dead inbox",
+              "No analytics, no idea what is working",
             ]}
           />
           <PainCard
             title="What we build instead"
             tone="signal"
             items={[
-              "Fast, mobile-first layout",
-              "Hours, services, and pricing accurate",
-              "Click-to-call always visible",
-              "Quote forms that land in your inbox",
-              "Looks current today and a year from now",
+              "Fast, mobile-first layout designed for conversion",
+              "Service pages mapped to how customers search",
+              "Click-to-call, quote, and booking always one tap away",
+              "Lead capture that routes straight to your inbox or CRM",
+              "Analytics wired in so you can see what is producing leads",
             ]}
           />
         </div>
@@ -371,11 +378,12 @@ function ModernFeatures() {
         <div className="max-w-[560px]">
           <p className="t-label">Features</p>
           <h2 className="t-headline mt-3">
-            Modern features your website can include.
+            The components that turn a website into a growth system.
           </h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            Beyond a brochure. These are the features that turn a local
-            business website into a working lead system.
+            Booking, quote flows, AI assistants, service-area SEO, reviews,
+            and proof. The working pieces a service business needs to convert
+            visitors into customers, not just present itself online.
           </p>
         </div>
         <div>
@@ -411,25 +419,47 @@ function ModernFeatures() {
    4. Packages preview — three cards (the real prices).
    ============================================================ */
 function PackagesPreview() {
+  const tiers = [
+    { name: "Starter", price: "From $1,995", fit: "A clean professional foundation" },
+    { name: "Growth", price: "From $3,995", fit: "Real lead generation, most common" },
+    { name: "Authority", price: "From $6,995", fit: "Multi-service, multi-location, advanced" },
+  ];
   return (
     <Section tone="cream-deep" hairline="bottom">
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <div className="max-w-[560px]">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-16">
+        <div className="max-w-[480px]">
           <p className="t-label">Packages</p>
-          <h2 className="t-headline mt-3">Transparent pricing. No estimates that creep.</h2>
+          <h2 className="t-headline mt-3">
+            Three packages. Fixed pricing. No estimates that creep.
+          </h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            Three packages that cover most local businesses. Pricing is fixed in the proposal before any work begins.
+            Pick the package that matches how much lead-generation muscle your business actually needs this year. Full comparison and add-ons live on the packages page.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button href="/packages" variant="primary" size="md">
+              Compare packages and add-ons
+              <ArrowRight />
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button href="/packages" variant="secondary" size="md">
-            Compare full features
-            <ArrowRight />
-          </Button>
-        </div>
-      </div>
-      <div className="mt-12">
-        <PricingPreviewCards />
+        <ul className="divide-y divide-[var(--divider)] rounded-2xl border border-[var(--divider)] bg-[var(--paper-white)] shadow-paper">
+          {tiers.map((t) => (
+            <li
+              key={t.name}
+              className="grid grid-cols-[1fr_auto] items-baseline gap-4 px-5 py-4 sm:px-6 sm:py-5"
+            >
+              <div>
+                <p className="text-[1rem] font-semibold tracking-[-0.01em] text-[var(--ink-navy)]">
+                  {t.name}
+                </p>
+                <p className="mt-1 text-[0.9rem] text-[var(--warm-ash)]">{t.fit}</p>
+              </div>
+              <span className="font-mono text-[0.92rem] font-medium text-[var(--ink-navy)]">
+                {t.price}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </Section>
   );
@@ -448,7 +478,7 @@ function CarePreview() {
             Your site stays current. You stay on the job.
           </h2>
           <p className="t-lead mt-5 text-[var(--cream-edge)]">
-            Hosting, security, backups, and small edits done by email request. Cancel anytime, keep your domain, take your site if you ever leave.
+            Hosting, security, backups, and small edits done by email request. Every build includes a 6-month launch care period. After that, continue month-to-month or request a clean handoff. You always keep your domain and content.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Button href="/monthly-care" variant="primary-on-dark" size="md">
@@ -495,9 +525,9 @@ function ExamplesStrip() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-[520px]">
           <p className="t-label">Concept examples</p>
-          <h2 className="t-headline mt-3">A few of the kinds of businesses we build for.</h2>
+          <h2 className="t-headline mt-3">A few of the service businesses we are built to grow.</h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            These are concept examples designed by us, not real client work. The full set lives on the examples page.
+            Roofers, med spas, contractors, law firms, and other appointment- or quote-driven businesses. These are concept examples designed by us — not real client work. The full set lives on the examples page.
           </p>
         </div>
         <div>
@@ -582,10 +612,10 @@ function ProcessGlance() {
     <Section tone="cream-deep" hairline="bottom">
       <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:items-center">
         <div className="max-w-[460px]">
-          <p className="t-label">How we work</p>
-          <h2 className="t-headline mt-3">Six steps. Fixed pricing. Plain English.</h2>
+          <p className="t-label">Operating model</p>
+          <h2 className="t-headline mt-3">A repeatable process built around a specialist workflow.</h2>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            From the first conversation to ongoing care, every step is fixed-scope and fixed-price. You always know what is happening next.
+            From the first conversation to ongoing care, every step is fixed-scope, fixed-price, and handled by the discipline it belongs to. Strategy, design, development, SEO structure, lead capture, launch, and care. You always know what is happening next.
           </p>
           <div className="mt-7">
             <Button href="/process" variant="secondary" size="md">

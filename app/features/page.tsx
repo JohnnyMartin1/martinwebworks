@@ -6,7 +6,7 @@ import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { CheckIcon } from "@/app/components/ui/Icons";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 import { FormMockup } from "@/app/components/mockups/FormMockup";
 import { LeadFlowMockup } from "@/app/components/mockups/LeadFlowMockup";
@@ -24,22 +24,24 @@ import {
 } from "@/app/components/mockups/TrustMockup";
 
 export const metadata: Metadata = {
-  title: "Website Features for Local Businesses",
+  title: "Website Features for Service Businesses",
   description:
-    "A showroom of the features local businesses can add to their websites — quote forms, AI lead assistants, online booking, reviews, FAQs, service-area pages, and monthly care. Designed and demonstrated by Martin Web Works.",
+    "The working components that turn a website into a customer-acquisition system. Quote and lead capture, online booking, AI assistants, service-area SEO, trust blocks, before/after, and ongoing care. Demonstrated in working mockups, not just described.",
   alternates: { canonical: "/features" },
   openGraph: {
     title: "Website Features · Martin Web Works",
     description:
-      "Quote forms, AI assistants, online booking, service-area pages, reviews, FAQs, and monthly care — demonstrated, not just described.",
+      "Quote flows, AI assistants, online booking, service-area SEO, reviews, and ongoing care. The components that turn a website into a growth system.",
     url: "/features",
     type: "website",
+    images: SHARE_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
     title: "Website Features · Martin Web Works",
     description:
-      "A showroom of website features for local businesses, demonstrated in real component mockups.",
+      "The components that turn a service-business website into a growth system, demonstrated in working mockups.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -82,20 +84,19 @@ function Hero() {
               The showroom
             </p>
             <h1 className="t-display mt-5">
-              Website features your local business can add.
+              The components that turn a website into a growth system.
             </h1>
             <p className="t-lead mt-6">
-              From quote forms and booking links to AI assistants, service-area
-              pages, galleries, reviews, and monthly updates — these are the
-              pieces that turn a website into a working business tool.
+              Quote and lead capture, online booking, AI assistants, service-area SEO, trust blocks, before/after, and ongoing care. Each feature is here for a single reason: to take a visitor closer to becoming a customer.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
                 href={BOOK_AUDIT_HREF}
                 external={BOOK_AUDIT_IS_EXTERNAL}
                 size="lg"
+                data-cta="book_audit_hero"
               >
-                Book Free Audit
+                Book Free Website Audit
                 <ArrowRight />
               </Button>
               <Button href="/examples" variant="secondary" size="lg">
@@ -171,19 +172,19 @@ function LeadCaptureSection() {
   return (
     <Section id="lead-capture" tone="paper">
       <div className="max-w-[640px]">
-        <p className="t-label text-[var(--warm-ash)]">Lead capture</p>
+        <p className="t-label text-[var(--warm-ash)]">Lead capture · quote & contact</p>
         <h2 className="t-headline mt-3">
           Forms that earn their place — not contact-us black holes.
         </h2>
         <p className="t-body mt-5 text-[var(--warm-ash)]">
           A good form is short, mobile-first, and routes a real lead to the
-          right inbox. These are the variants we ship most.
+          right inbox. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> for most service businesses, the form is the single largest source of qualified inquiries — so the difference between a good one and a bad one is measured in monthly revenue, not pixels.
         </p>
       </div>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:gap-7">
         <FormMockup variant="quote" />
-        <FormMockup variant="contact" business="Verbena Aesthetics" />
+        <FormMockup variant="contact" business="Luma Aesthetics" />
         <FormMockup variant="intake" business="Harbor & Slate Law" />
       </div>
 
@@ -222,14 +223,12 @@ function BookingSection() {
     <Section id="booking" tone="cream-deep" hairline="top">
       <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-16">
         <div className="max-w-[560px]">
-          <p className="t-label text-[var(--warm-ash)]">Booking · interactive</p>
+          <p className="t-label text-[var(--warm-ash)]">Online booking · interactive</p>
           <h2 className="t-headline mt-3">
             A booking flow customers actually finish.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            Try the widget. Pick a service, pick a time, fill in the details —
-            it walks through the same three-step pattern we ship on client
-            sites.
+            Try the widget. Pick a service, pick a time, fill in the details — the same three-step pattern we ship on client sites. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> for appointment-based businesses, replacing a &ldquo;contact us&rdquo; form with a real booking flow removes the back-and-forth that quietly kills a meaningful share of inquiries.
           </p>
           <ul className="mt-7 grid gap-2.5">
             {BOOKING_POINTS.map((p) => (
@@ -280,14 +279,12 @@ function AISection() {
     <Section id="ai" tone="paper" hairline="top">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
         <div className="max-w-[520px]">
-          <p className="t-label text-[var(--warm-ash)]">AI assistant · interactive</p>
+          <p className="t-label text-[var(--warm-ash)]">AI lead assistant · interactive</p>
           <h2 className="t-headline mt-3">
             A scripted demo of how the assistant captures a lead.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            Pick a question. The assistant answers from approved business
-            information, asks a qualifying follow-up, and ends with a captured
-            lead in your inbox.
+            Pick a question. The assistant answers from approved business information, asks a qualifying follow-up, and ends with a captured lead in your inbox. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> a meaningful portion of website traffic arrives outside business hours — the assistant turns those visits into qualified leads in your inbox instead of someone bouncing to a competitor.
           </p>
           <ul className="mt-7 grid gap-4">
             {AI_FACTS.map((f) => (
@@ -331,14 +328,12 @@ function TrustSection() {
   return (
     <Section id="trust" tone="cream-deep" hairline="top">
       <div className="max-w-[640px]">
-        <p className="t-label text-[var(--warm-ash)]">Trust</p>
+        <p className="t-label text-[var(--warm-ash)]">Reviews, trust, and proof</p>
         <h2 className="t-headline mt-3">
-          The blocks that earn a call before the first form.
+          The blocks that earn the call before the form is filled out.
         </h2>
         <p className="t-body mt-5 text-[var(--warm-ash)]">
-          Trust is a layout problem before it is a copy problem. These are the
-          components we use to make a small business look the size it actually
-          is.
+          Trust is a layout problem before it is a copy problem. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> customers rarely call a business they do not believe in yet — reviews, credentials, team detail, and visible proof are how a website earns belief in the seconds before the decision.
         </p>
       </div>
 
@@ -374,14 +369,12 @@ function LocalSeoSection() {
     <Section id="local-seo" tone="paper" hairline="top">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-14">
         <div className="max-w-[520px]">
-          <p className="t-label text-[var(--warm-ash)]">Local SEO</p>
+          <p className="t-label text-[var(--warm-ash)]">Service-area SEO structure</p>
           <h2 className="t-headline mt-3">
             Structure Google can actually understand.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            The site map, schema, and Google Business Profile work as one
-            system. Search engines map your services to the places you serve;
-            visitors land on the right page first.
+            Service pages, service-area pages, schema, and Google Business Profile work as one system. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> a business that wins searches for &ldquo;service + city&rdquo; wins the searches that actually convert. Generic service pages do not rank for the work people are about to pay for.
           </p>
           <ul className="mt-7 grid gap-2.5">
             {SEO_POINTS.map((p) => (
@@ -420,13 +413,12 @@ function CareSection() {
       <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">
         <CareOpsMockup />
         <div className="max-w-[520px]">
-          <p className="t-label text-[var(--warm-ash)]">Monthly care</p>
+          <p className="t-label text-[var(--warm-ash)]">Ongoing care & growth support</p>
           <h2 className="t-headline mt-3">
-            The site stays current. You stay on the job.
+            The site keeps converting. You keep running the business.
           </h2>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
-            Care plans handle hosting, security, monitoring, edits, and the
-            slow drift that quietly degrades most local-business sites.
+            Care covers hosting, security, monitoring, monthly edits, and the slow drift that quietly degrades most service-business sites. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> the difference between a website that produces leads in year three and one that does not is almost always whether anyone was paying attention after launch.
           </p>
           <ul className="mt-7 grid gap-2.5">
             {CARE_POINTS.map((p) => (
@@ -464,11 +456,10 @@ function BeforeAfterSection() {
       <div className="max-w-[640px]">
         <p className="t-label text-[var(--warm-ash)]">Before / after</p>
         <h2 className="t-headline mt-3">
-          What changes when a local-business site is built around the visitor.
+          What changes when a service-business site is built around conversion.
         </h2>
         <p className="t-body mt-5 text-[var(--warm-ash)]">
-          The visible difference is layout and tap-targets. The invisible
-          difference is the rest of this page.
+          The visible difference is layout, hierarchy, and tap-targets. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> the same monthly visitor count produces a meaningfully different number of inquiries depending on how the page is structured — that delta is the entire reason to redesign at all.
         </p>
       </div>
       <div className="mt-12">
@@ -485,9 +476,9 @@ function BeforeAfterSection() {
 function FinalCTA() {
   return (
     <CTASection
-      headline="Not sure which features your business actually needs?"
-      body="Book a free 30-minute audit. We will look at your current site (or your situation) and tell you which of these features would move the needle for you — and which can wait."
-      primaryLabel="Book Free Audit"
+      headline="Not sure which growth features your business actually needs?"
+      body="Book a free website audit. We will review your site (or your situation), tell you which of these features would move the needle for your business, and which can wait."
+      primaryLabel="Book Free Website Audit"
       secondary={{ label: "See Example Websites", href: "/examples" }}
     />
   );

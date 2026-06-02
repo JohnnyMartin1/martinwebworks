@@ -23,7 +23,7 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <Logo tone="cream" />
             <p className="mt-5 text-sm leading-relaxed text-[var(--cream-edge)]">
-              A local web studio. We build, host, and update websites for service businesses across the country. {SITE.location}.
+              Conversion-focused websites for service businesses across the U.S. We design, build, and support the strategy, SEO structure, lead capture, and ongoing care that turns a website into a customer-acquisition system. {SITE.location}.
             </p>
             <ul className="mt-5 space-y-2 text-sm text-[var(--cream-edge)]">
               <li>

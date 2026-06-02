@@ -104,7 +104,7 @@ export function MobileStickyCTA() {
   return (
     <div
       aria-label="Quick actions"
-      className="md:hidden fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(env(safe-area-inset-bottom),12px)] pt-3 pointer-events-none"
+      className="lg:hidden fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(env(safe-area-inset-bottom),12px)] pt-3 pointer-events-none"
     >
       <div className="pointer-events-auto mx-auto flex max-w-[640px] items-center gap-2 rounded-full border border-[var(--divider)] bg-[var(--paper-white)]/95 p-1.5 shadow-[0_8px_30px_-8px_rgba(11,27,51,0.25)] backdrop-blur">
         {BOOK_AUDIT_IS_EXTERNAL ? (
@@ -114,18 +114,18 @@ export function MobileStickyCTA() {
             rel="noopener noreferrer"
             onClick={onBookClick}
             data-cta="book_audit_mobile_sticky"
-            className="flex h-11 flex-1 items-center justify-center rounded-full bg-[var(--ink-navy)] px-4 text-[0.92rem] font-medium text-[var(--cream-paper)] shadow-cta active:translate-y-[0.5px]"
+            className="flex h-11 flex-1 items-center justify-center rounded-full bg-[var(--ink-navy)] px-4 text-[0.88rem] font-medium text-[var(--cream-paper)] shadow-cta active:translate-y-[0.5px]"
           >
-            Book Free Audit
+            Book Free Website Audit
           </a>
         ) : (
           <Link
             href={BOOK_AUDIT_HREF}
             onClick={onBookClick}
             data-cta="book_audit_mobile_sticky"
-            className="flex h-11 flex-1 items-center justify-center rounded-full bg-[var(--ink-navy)] px-4 text-[0.92rem] font-medium text-[var(--cream-paper)] shadow-cta active:translate-y-[0.5px]"
+            className="flex h-11 flex-1 items-center justify-center rounded-full bg-[var(--ink-navy)] px-4 text-[0.88rem] font-medium text-[var(--cream-paper)] shadow-cta active:translate-y-[0.5px]"
           >
-            Book Free Audit
+            Book Free Website Audit
           </Link>
         )}
 

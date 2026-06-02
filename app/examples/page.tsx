@@ -6,23 +6,31 @@ import { Section } from "@/app/components/ui/Section";
 import { CTASection } from "@/app/components/ui/CTASection";
 import { ExamplesGrid } from "@/app/components/features/ExamplesGrid";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 import {
   EXAMPLE_CONCEPTS,
   getBaseExample,
 } from "@/app/data/exampleConcepts";
 
 export const metadata: Metadata = {
-  title: "Example Websites for Local Businesses",
+  title: "Example Websites for Service Businesses",
   description:
-    "Concept examples of websites Martin Web Works can build for roofers, electricians, dentists, law firms, med spas, restaurants, and other local service businesses.",
+    "Concept examples of websites Martin Web Works can build for roofers, electricians, contractors, law firms, med spas, restaurants, and other service businesses across the U.S.",
   alternates: { canonical: "/examples" },
   openGraph: {
     title: "Example Websites · Martin Web Works",
     description:
-      "Concept websites for local service businesses — roofers, electricians, dentists, law firms, and more.",
+      "Concept websites for service businesses — roofers, electricians, contractors, law firms, med spas, and more.",
     url: "/examples",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Example Websites · Martin Web Works",
+    description:
+      "Concept walkthroughs of conversion-focused websites for service businesses.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -32,13 +40,14 @@ export default function ExamplesPage() {
       <PageHero
         eyebrow="Examples"
         headline="Industry-specific concept websites."
-        lead="These are concept examples, not real client sites. They show how a website should be structured for different local business types — what goes above the fold, how trust gets built, and where the leads actually come from."
+        lead="These are concept examples, not real client sites. They show how a website should be structured for different service-business types — what goes above the fold, how trust gets built, and where the leads actually come from."
         actions={
           <>
             <Button
               href={BOOK_AUDIT_HREF}
               external={BOOK_AUDIT_IS_EXTERNAL}
               size="lg"
+              data-cta="book_audit_hero"
             >
               Book Free Website Audit
               <ArrowRight />
@@ -94,8 +103,8 @@ export default function ExamplesPage() {
       </Section>
 
       <CTASection
-        headline="Want to see what your business site should look like?"
-        body="Book a free 30-minute audit. We will walk through your current site (or your situation) and sketch the direction we would take."
+        headline="Want to see what your business website should look like?"
+        body="Book a free website audit. We will review your current site (or your situation) and sketch the direction we would take for a conversion-focused build."
         primaryLabel="Book Free Website Audit"
         secondary={{ label: "View Packages", href: "/packages" }}
       />

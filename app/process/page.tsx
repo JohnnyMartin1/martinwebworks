@@ -6,19 +6,27 @@ import { CTASection } from "@/app/components/ui/CTASection";
 import { ProcessTimeline } from "@/app/components/features/ProcessTimeline";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { CheckIcon } from "@/app/components/ui/Icons";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 export const metadata: Metadata = {
-  title: "Our Process · Audit to Launch to Ongoing Care",
+  title: "Our Process · Free Website Audit to Launch to Ongoing Care",
   description:
-    "Six steps from a free audit to a launched, looked-after website: audit, proposal, intake, design and build, launch, and monthly care. Fixed scope, fixed price, plain English.",
+    "A six-step repeatable process for service-business website builds: free website audit, proposal, intake, design and build, launch, and ongoing care. Fixed scope, fixed price, plain English.",
   alternates: { canonical: "/process" },
   openGraph: {
     title: "Process · Martin Web Works",
     description:
-      "Six steps from free audit to launched, looked-after website. Fixed scope, fixed price.",
+      "Six steps from free website audit to launched, looked-after website. Fixed scope, fixed price.",
     url: "/process",
     type: "website",
+    images: SHARE_IMAGES,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Process · Martin Web Works",
+    description:
+      "Six-step repeatable process for service-business website builds.",
+    images: SHARE_IMAGES,
   },
 };
 

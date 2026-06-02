@@ -9,25 +9,27 @@ import { CheckIcon } from "@/app/components/ui/Icons";
 import { AssistantDemo } from "@/app/components/mockups/AssistantDemo";
 import { BookingMockup } from "@/app/components/mockups/BookingMockup";
 import { AI_BENEFITS, AI_PLANS } from "@/app/data/aiPlans";
-import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL } from "@/app/data/site";
+import { BOOK_AUDIT_HREF, BOOK_AUDIT_IS_EXTERNAL, SHARE_IMAGES } from "@/app/data/site";
 
 export const metadata: Metadata = {
-  title: "AI Assistant Add-on for Local Business Websites",
+  title: "AI Lead Assistant Add-on for Service-Business Websites",
   description:
-    "An optional AI lead assistant for local businesses. Captures off-hours leads, answers common questions from approved business info, and routes the conversation to your inbox.",
+    "An optional AI lead assistant for service businesses. Captures off-hours questions, answers from approved business information, qualifies the inquiry, and hands the lead to your inbox.",
   alternates: { canonical: "/ai-assistant" },
   openGraph: {
-    title: "AI Assistant · Martin Web Works",
+    title: "AI Lead Assistant · Martin Web Works",
     description:
-      "Optional AI lead assistant for local business websites. Captures leads from approved business information and hands them to you.",
+      "Optional AI lead assistant for service-business websites. Captures off-hours leads from approved business information and hands them to your inbox.",
     url: "/ai-assistant",
     type: "website",
+    images: SHARE_IMAGES,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Assistant · Martin Web Works",
+    title: "AI Lead Assistant · Martin Web Works",
     description:
-      "Optional AI lead assistant for local business websites. Try the scripted demo.",
+      "Optional AI lead assistant for service-business websites. Try the scripted demo.",
+    images: SHARE_IMAGES,
   },
 };
 
@@ -201,7 +203,7 @@ export default function AIAssistantPage() {
               For appointment-based businesses, the lead is a booking.
             </h2>
             <p className="t-body mt-4 text-[var(--warm-ash)]">
-              Dentists, med spas, salons, vets, attorneys, and accountants
+              Med spas, salons, vets, attorneys, accountants, and other appointment-based service businesses
               often need the conversation to end in a confirmed time slot, not
               just a phone number. The assistant can collect the same details
               and hand off to a booking widget like the one shown here.

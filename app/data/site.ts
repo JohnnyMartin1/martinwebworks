@@ -3,9 +3,18 @@
 export const SITE = {
   name: "Martin Web Works",
   description:
-    "Websites that help local businesses get more calls, quote requests, and booked jobs. Built, hosted, and maintained for you.",
+    "Conversion-focused websites for service businesses ready to grow. Strategy, design, SEO structure, lead capture, booking flows, and ongoing care — built as a system, not a brochure.",
+  // The studio operates remotely across the US. Arlington is the address of
+  // record; we do not lead with geography in marketing copy.
   email: "team@martinwebworks.com",
-  location: "Arlington, VA / Washington, DC area",
+  location: "Remote · United States",
+  /**
+   * Address of record. Kept separate from `location` so the public marketing
+   * surface can say "Remote · United States" while legal / structured-data /
+   * footer disclosures can still use the real city.
+   */
+  cityOfRecord: "Arlington, VA",
+  regionOfRecord: "Washington, DC metro area",
 } as const;
 
 /**
@@ -65,3 +74,24 @@ export const HAS_SCHEDULING = SCHEDULING_URL.length > 0;
  */
 export const BOOK_AUDIT_HREF = "/free-audit";
 export const BOOK_AUDIT_IS_EXTERNAL = false;
+
+/**
+ * Shared Open Graph / Twitter image descriptor.
+ *
+ * Centralized here so pages that declare their own `openGraph` or `twitter`
+ * blocks in `metadata` can spread these images in. When a page overrides
+ * those blocks without re-declaring `images`, Next.js does not inherit the
+ * file-based image from `app/opengraph-image.tsx`, and shared links go
+ * preview-blank. Importing `SHARE_IMAGES` and including it in the override
+ * keeps every shared link emitting a real og:image / twitter:image tag.
+ *
+ * The path `/opengraph-image` resolves to the file-based image route.
+ */
+export const SHARE_IMAGES = [
+  {
+    url: "/opengraph-image",
+    width: 1200,
+    height: 630,
+    alt: `${SITE.name} — Conversion-focused websites for service businesses`,
+  },
+];
