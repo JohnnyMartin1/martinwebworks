@@ -223,6 +223,22 @@ body {
 }
 
 /* ============================================================
+   Fade-up-on-scroll (section headings only)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.4s var(--ease-out-quart),
+    transform 0.4s var(--ease-out-quart);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
    Reduce motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -235,5 +251,10 @@ body {
   }
   html {
     scroll-behavior: auto;
+  }
+  /* Never leave a reveal target hidden when motion is reduced. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -459,7 +459,7 @@ function BeforeAfterSection() {
           What changes when a service-business site is built around conversion.
         </h2>
         <p className="t-body mt-5 text-[var(--warm-ash)]">
-          The visible difference is layout, hierarchy, and tap-targets. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> the same monthly visitor count produces a meaningfully different number of inquiries depending on how the page is structured — that delta is the entire reason to redesign at all.
+          The visible difference is layout, hierarchy, and tap-targets. <strong className="font-semibold text-[var(--ink-navy)]">Why it matters:</strong> the same monthly visitor count produces a meaningfully different number of inquiries depending on how the page is structured. That delta is the entire reason to redesign at all.
         </p>
       </div>
       <div className="mt-12">

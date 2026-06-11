@@ -67,6 +67,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
+      <head>
+        <noscript>
+          {/* Keep scroll-reveal headings visible without JavaScript. */}
+          <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
+        </noscript>
+      </head>
       <body className="min-h-full flex flex-col">
         <a
           href="#main"

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Button, ArrowRight } from "@/app/components/ui/Button";
 import { Container } from "@/app/components/ui/Container";
 import { Section } from "@/app/components/ui/Section";
-import { Card } from "@/app/components/ui/Card";
 import { Stamp } from "@/app/components/ui/Stamp";
+import { Reveal } from "@/app/components/ui/Reveal";
+import { ScoreRings } from "@/app/components/features/ScoreRings";
 import { CTASection } from "@/app/components/ui/CTASection";
 import {
   CheckIcon,
@@ -109,7 +111,7 @@ function Hero() {
                 "Strategy, design, SEO, and lead capture as one system",
                 "Quote, booking, and AI-assistant flows built in",
                 "Service-area SEO structure that maps your services to cities",
-                "Ongoing care after launch — never a hand-off and ghost",
+                "Ongoing care after launch, never a hand-off and ghost",
               ].map((line) => (
                 <li
                   key={line}
@@ -151,7 +153,7 @@ function HeroComposition() {
           <LeadNotification
             tone="lead"
             label="New quote request"
-            title="Sarah K. — Roof replacement"
+            title="Sarah K., Roof replacement"
             time="2 minutes ago"
           />
         </div>
@@ -177,137 +179,141 @@ function HeroComposition() {
 }
 
 /* ============================================================
-   2. Purpose block — Lead paragraph + three commitments.
+   2. Purpose block — full-bleed dark, numbered editorial list.
    ============================================================ */
 function PurposeBlock() {
   const commitments = [
     {
-      icon: <GlobeIcon className="text-[var(--ink-navy)]" />,
       title: "We build the system.",
       body: "Strategy, design, and development assembled into a conversion-focused website. Not a brochure that sits there looking pretty.",
     },
     {
-      icon: <WrenchIcon className="text-[var(--ink-navy)]" />,
       title: "We host and harden it.",
       body: "Managed hosting, SSL, backups, monitoring, and patching stay handled. One specialist email, not a ticket queue.",
     },
     {
-      icon: <CalendarIcon className="text-[var(--ink-navy)]" />,
       title: "We tune it after launch.",
       body: "New services, new locations, new offers. Edits, analytics review, and lead-flow checks are built into ongoing care.",
     },
   ];
 
   return (
-    <Section tone="cream-deep" hairline="bottom">
-      <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-        <div className="max-w-[560px]">
-          <h2 className="t-headline">
+    <Section tone="navy" hairline="none">
+      <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+        <div className="max-w-[520px]">
+          <Reveal
+            as="h2"
+            className="text-[var(--cream-paper)] text-[clamp(2rem,2.4vw+1rem,3rem)] font-semibold leading-[1.08] tracking-[-0.02em]"
+          >
             A website growth partner, not a one-off build.
-          </h2>
-          <p className="t-lead mt-5">
+          </Reveal>
+          <p className="t-lead mt-6 text-[var(--cream-edge)]">
             Most service-business websites get built once, handed off, and quietly stop earning by year two. We treat the website as a customer-acquisition system. Designed, measured, and maintained so it keeps producing inquiries long after launch.
           </p>
-          <div className="mt-7">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 font-medium text-[var(--ink-navy)] underline decoration-[var(--signal-blue)] decoration-2 underline-offset-4 hover:text-[var(--signal-blue)]"
-            >
-              See what we build, host, and grow
-              <ArrowRight />
-            </Link>
-          </div>
+          <Link
+            href="/services"
+            className="mt-8 inline-flex items-center gap-2 font-medium text-[var(--cream-paper)] underline decoration-white/30 decoration-2 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            See what we build, host, and grow
+            <ArrowRight />
+          </Link>
         </div>
 
-        <ul className="grid gap-4">
-          {commitments.map((c) => (
+        <ol className="divide-y divide-white/10">
+          {commitments.map((c, i) => (
             <li
               key={c.title}
-              className="flex gap-4 rounded-2xl border border-[var(--cream-edge)] bg-[var(--paper-white)] p-5"
+              className="grid grid-cols-[auto_1fr] gap-x-6 py-8 first:pt-0 last:pb-0 sm:gap-x-10"
             >
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--cream-deep)]">
-                {c.icon}
+              <span className="font-mono text-[0.9rem] font-medium text-[var(--warm-ash-soft)]">
+                {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h3 className="t-title">{c.title}</h3>
-                <p className="mt-1 text-[0.975rem] leading-relaxed text-[var(--warm-ash)]">{c.body}</p>
+                <h3 className="text-[1.35rem] font-semibold tracking-[-0.01em] text-[var(--cream-paper)]">
+                  {c.title}
+                </h3>
+                <p className="mt-2.5 text-[1.0625rem] leading-relaxed text-[var(--cream-edge)]">
+                  {c.body}
+                </p>
               </div>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </Section>
   );
 }
 
 /* ============================================================
-   3. Problem and solution — quiet two-column comparison.
+   3. The Gap — single split-panel comparison, vertical divider.
    ============================================================ */
 function ProblemSolution() {
   return (
     <Section tone="paper" hairline="bottom">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:items-start">
         <div>
           <p className="t-label">The gap</p>
-          <h2 className="t-headline mt-3">
+          <Reveal as="h2" className="t-headline mt-3">
             Most service businesses lose work to a slightly less-bad website down the street.
-          </h2>
+          </Reveal>
           <p className="t-body mt-5 text-[var(--warm-ash)]">
             Customers searching for a roofer, an electrician, a med spa, or a contractor do not compare ten sites. They click the first one that loads fast, explains the service clearly, and tells them how to call, quote, or book.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <PainCard
-            title="What an outdated site does"
-            tone="rose"
-            items={[
-              "Slow on mobile, hard to tap",
-              "Hours, services, and pricing out of date",
-              "Phone number buried below the fold",
-              "No quote form, or it goes to a dead inbox",
-              "No analytics, no idea what is working",
-            ]}
-          />
-          <PainCard
-            title="What we build instead"
-            tone="signal"
-            items={[
-              "Fast, mobile-first layout designed for conversion",
-              "Service pages mapped to how customers search",
-              "Click-to-call, quote, and booking always one tap away",
-              "Lead capture that routes straight to your inbox or CRM",
-              "Analytics wired in so you can see what is producing leads",
-            ]}
-          />
+        <div className="overflow-hidden rounded-2xl border border-[var(--divider)] bg-[var(--paper-white)] shadow-paper">
+          <div className="grid divide-y divide-[var(--divider)] sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+            <ComparePanel
+              tone="rose"
+              title="What an outdated site does"
+              items={[
+                "Slow on mobile, hard to tap",
+                "Hours, services, and pricing out of date",
+                "Phone number buried below the fold",
+                "No quote form, or it goes to a dead inbox",
+                "No analytics, no idea what is working",
+              ]}
+            />
+            <ComparePanel
+              tone="emerald"
+              title="What we build instead"
+              items={[
+                "Fast, mobile-first layout designed for conversion",
+                "Service pages mapped to how customers search",
+                "Click-to-call, quote, and booking always one tap away",
+                "Lead capture that routes straight to your inbox or CRM",
+                "Analytics wired in so you can see what is producing leads",
+              ]}
+            />
+          </div>
         </div>
       </div>
     </Section>
   );
 }
 
-function PainCard({
+function ComparePanel({
   title,
   items,
   tone,
 }: {
   title: string;
   items: string[];
-  tone: "rose" | "signal";
+  tone: "rose" | "emerald";
 }) {
-  const isSignal = tone === "signal";
+  const isGood = tone === "emerald";
   return (
-    <Card tone="paper" className="!p-6">
+    <div className={`p-6 sm:p-7 ${isGood ? "bg-[var(--success-emerald-soft)]/35" : "bg-[var(--alert-rose-soft)]/40"}`}>
       <div className="flex items-center gap-2.5">
         <span
           className={`inline-flex h-7 w-7 items-center justify-center rounded-full ${
-            isSignal
-              ? "bg-[var(--signal-blue-soft)] text-[var(--signal-blue-deep)]"
+            isGood
+              ? "bg-[var(--success-emerald-soft)] text-[#065f46]"
               : "bg-[var(--alert-rose-soft)] text-[#9f1239]"
           }`}
           aria-hidden
         >
-          {isSignal ? (
+          {isGood ? (
             <CheckIcon className="h-4 w-4" />
           ) : (
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -320,19 +326,22 @@ function PainCard({
             </svg>
           )}
         </span>
-        <h3 className="t-title text-[var(--ink-navy)]">
-          {title}
-        </h3>
+        <h3 className="t-title text-[var(--ink-navy)]">{title}</h3>
       </div>
-      <ul className="mt-4 space-y-2 text-[0.95rem] text-[var(--warm-ash)]">
+      <ul className="mt-5 space-y-3 text-[0.95rem] text-[var(--warm-ash)]">
         {items.map((i) => (
-          <li key={i} className="flex items-start gap-2">
-            <span aria-hidden className="mt-2 inline-block h-1 w-1 rounded-full bg-[var(--warm-ash-soft)]" />
+          <li key={i} className="flex items-start gap-2.5">
+            <span
+              aria-hidden
+              className={`mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full ${
+                isGood ? "bg-[var(--success-emerald)]" : "bg-[#e3829a]"
+              }`}
+            />
             {i}
           </li>
         ))}
       </ul>
-    </Card>
+    </div>
   );
 }
 
@@ -359,7 +368,7 @@ function ModernFeatures() {
     {
       icon: <MapIcon className="text-[var(--ink-navy)]" />,
       title: "Service-area pages",
-      body: "One URL per city — what Google needs to surface you locally.",
+      body: "One URL per city, what Google needs to surface you locally.",
     },
     {
       icon: <StarIcon className="text-[var(--ink-navy)]" />,
@@ -377,9 +386,9 @@ function ModernFeatures() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-[560px]">
           <p className="t-label">Features</p>
-          <h2 className="t-headline mt-3">
+          <Reveal as="h2" className="t-headline mt-3">
             The components that turn a website into a growth system.
-          </h2>
+          </Reveal>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
             Booking, quote flows, AI assistants, service-area SEO, reviews,
             and proof. The working pieces a service business needs to convert
@@ -429,9 +438,9 @@ function PackagesPreview() {
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-16">
         <div className="max-w-[480px]">
           <p className="t-label">Packages</p>
-          <h2 className="t-headline mt-3">
+          <Reveal as="h2" className="t-headline mt-3">
             Three packages. Fixed pricing. No estimates that creep.
-          </h2>
+          </Reveal>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
             Pick the package that matches how much lead-generation muscle your business actually needs this year. Full comparison and add-ons live on the packages page.
           </p>
@@ -474,9 +483,9 @@ function CarePreview() {
       <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
         <div className="max-w-[480px]">
           <p className="t-label text-[var(--cream-edge)]">Monthly Care</p>
-          <h2 className="t-headline mt-3 text-[var(--cream-paper)]">
+          <Reveal as="h2" className="t-headline mt-3 text-[var(--cream-paper)]">
             Your site stays current. You stay on the job.
-          </h2>
+          </Reveal>
           <p className="t-lead mt-5 text-[var(--cream-edge)]">
             Hosting, security, backups, and small edits done by email request. Every build includes a 6-month launch care period. After that, continue month-to-month or request a clean handoff. You always keep your domain and content.
           </p>
@@ -511,10 +520,9 @@ function CarePreview() {
 }
 
 /* ============================================================
-   6. Examples strip — three concept cards, link to full gallery.
+   6. Examples — featured live demo + concept-card grid.
    ============================================================ */
 function ExamplesStrip() {
-  // Feature the three businesses that have full concept walkthroughs.
   const featured = [
     EXAMPLES.find((e) => e.slug === "summit-ridge-roofing")!,
     EXAMPLES.find((e) => e.slug === "luma-aesthetics")!,
@@ -525,9 +533,11 @@ function ExamplesStrip() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-[520px]">
           <p className="t-label">Concept examples</p>
-          <h2 className="t-headline mt-3">A few of the service businesses we are built to grow.</h2>
+          <Reveal as="h2" className="t-headline mt-3">
+            A few of the service businesses we are built to grow.
+          </Reveal>
           <p className="t-body mt-4 text-[var(--warm-ash)]">
-            Roofers, med spas, contractors, law firms, and other appointment- or quote-driven businesses. These are concept examples designed by us — not real client work. The full set lives on the examples page.
+            Roofers, med spas, contractors, law firms, and other appointment- or quote-driven businesses. These are concept examples designed by us, not real client work. The full set lives on the examples page.
           </p>
         </div>
         <div>
@@ -538,7 +548,9 @@ function ExamplesStrip() {
         </div>
       </div>
 
-      <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+      <LiveDemoBlock />
+
+      <div className="mt-7 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
         {featured.map((ex) => {
           const conceptSlug = CONCEPT_SLUG_BY_BASE[ex.slug];
           const href = conceptSlug ? `/examples/${conceptSlug}` : "/examples";
@@ -596,49 +608,130 @@ function ExamplesStrip() {
   );
 }
 
+function LiveDemoBlock() {
+  return (
+    <div className="mt-12 overflow-hidden rounded-3xl border border-[var(--divider)] bg-[var(--paper-white)] shadow-paper ring-1 ring-inset ring-[var(--success-emerald-soft)]">
+      <div className="grid gap-0 lg:grid-cols-[1.15fr_1fr]">
+        <div className="border-b border-[var(--divider)] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+          <BrowserFrame url="demo-dental.martinwebworks.com" className="!shadow-none">
+            <Image
+              src="/images/demo-dental.jpeg"
+              alt="Screenshot of the Brightline Dental live demo homepage, showing a brighter, healthier smile headline with a Book Appointment button."
+              width={2560}
+              height={1500}
+              sizes="(min-width: 1024px) 620px, 100vw"
+              className="h-auto w-full"
+              priority={false}
+            />
+          </BrowserFrame>
+        </div>
+
+        <div className="flex flex-col p-6 sm:p-8">
+          <div className="flex items-center gap-3">
+            <Stamp tone="emerald">Live demo</Stamp>
+            <span className="text-[11px] font-mono text-[var(--warm-ash)]">
+              Dental practice
+            </span>
+          </div>
+          <h3 className="t-title mt-4 text-[1.45rem]">
+            Brightline Dental, a live demo we build and host.
+          </h3>
+          <p className="mt-2.5 text-[0.975rem] leading-relaxed text-[var(--warm-ash)]">
+            A real working site on our own infrastructure. The four Lighthouse scores below are measured on the live page, not a mockup.
+          </p>
+
+          <div className="mt-7 rounded-2xl border border-[var(--divider)] bg-[var(--cream-paper)] p-5">
+            <ScoreRings
+              scores={{ performance: 100, accessibility: 100, bestPractices: 100, seo: 100 }}
+            />
+          </div>
+
+          <div className="mt-7">
+            <a
+              href="https://demo-dental.martinwebworks.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-medium text-[var(--ink-navy)] underline decoration-[var(--success-emerald)] decoration-2 underline-offset-4 hover:text-[#047857]"
+            >
+              View live site
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ============================================================
-   7. Process glance — six-step strip, link to full /process.
+   7. Process — numbered timeline (horizontal desktop, vertical mobile).
    ============================================================ */
 function ProcessGlance() {
   const steps = [
-    { n: "01", t: "Free audit" },
-    { n: "02", t: "Proposal" },
-    { n: "03", t: "Intake" },
-    { n: "04", t: "Design and build" },
-    { n: "05", t: "Launch" },
-    { n: "06", t: "Ongoing care" },
+    { n: "01", t: "Free audit", cap: "30 minutes" },
+    { n: "02", t: "Proposal", cap: "1 to 3 days" },
+    { n: "03", t: "Intake", cap: "About 1 week" },
+    { n: "04", t: "Design and build", cap: "1 to 3 weeks" },
+    { n: "05", t: "Launch", cap: "About 1 day" },
+    { n: "06", t: "Ongoing care", cap: "Monthly" },
   ];
   return (
     <Section tone="cream-deep" hairline="bottom">
-      <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:items-center">
-        <div className="max-w-[460px]">
-          <p className="t-label">Operating model</p>
-          <h2 className="t-headline mt-3">A repeatable process built around a specialist workflow.</h2>
-          <p className="t-body mt-4 text-[var(--warm-ash)]">
-            From the first conversation to ongoing care, every step is fixed-scope, fixed-price, and handled by the discipline it belongs to. Strategy, design, development, SEO structure, lead capture, launch, and care. You always know what is happening next.
-          </p>
-          <div className="mt-7">
-            <Button href="/process" variant="secondary" size="md">
-              Read the full process
-              <ArrowRight />
-            </Button>
-          </div>
-        </div>
-        <ol className="relative grid gap-3 sm:grid-cols-2">
-          {steps.map((s, i) => (
-            <li
-              key={s.n}
-              className={`flex items-center gap-4 rounded-2xl border border-[var(--cream-edge)] bg-[var(--paper-white)] p-4 ${
-                i === 0 ? "sm:col-span-1" : ""
-              }`}
-            >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ink-navy)] text-[0.8rem] font-medium text-[var(--cream-paper)]">
-                {s.n}
+      <div className="max-w-[640px]">
+        <p className="t-label">Operating model</p>
+        <Reveal as="h2" className="t-headline mt-3">
+          A repeatable process built around a specialist workflow.
+        </Reveal>
+        <p className="t-body mt-4 text-[var(--warm-ash)]">
+          From the first conversation to ongoing care, every step is fixed-scope, fixed-price, and handled by the discipline it belongs to. Strategy, design, development, SEO structure, lead capture, launch, and care. You always know what is happening next.
+        </p>
+      </div>
+
+      {/* Desktop: horizontal numbered timeline. */}
+      <ol className="relative mt-14 hidden grid-cols-6 lg:grid">
+        <span
+          aria-hidden
+          className="absolute left-[8.333%] right-[8.333%] top-[22px] h-px bg-[var(--cream-edge)]"
+        />
+        {steps.map((s) => (
+          <li key={s.n} className="relative flex flex-col items-center px-3 text-center">
+            <span className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ink-navy)] text-[0.85rem] font-medium text-[var(--cream-paper)]">
+              {s.n}
+            </span>
+            <span className="mt-4 text-[0.95rem] font-semibold text-[var(--ink-navy)]">
+              {s.t}
+            </span>
+            <span className="mt-1 text-[0.8rem] text-[var(--warm-ash)]">{s.cap}</span>
+          </li>
+        ))}
+      </ol>
+
+      {/* Mobile / tablet: vertical numbered timeline. */}
+      <ol className="relative mt-10 lg:hidden">
+        <span
+          aria-hidden
+          className="absolute left-[21px] top-3 bottom-3 w-px bg-[var(--cream-edge)]"
+        />
+        {steps.map((s) => (
+          <li key={s.n} className="relative flex items-center gap-4 pb-7 last:pb-0">
+            <span className="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--ink-navy)] text-[0.85rem] font-medium text-[var(--cream-paper)]">
+              {s.n}
+            </span>
+            <div>
+              <span className="block text-[1rem] font-semibold text-[var(--ink-navy)]">
+                {s.t}
               </span>
-              <span className="text-[0.95rem] font-medium text-[var(--ink-navy)]">{s.t}</span>
-            </li>
-          ))}
-        </ol>
+              <span className="text-[0.85rem] text-[var(--warm-ash)]">{s.cap}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div className="mt-12">
+        <Button href="/process" variant="secondary" size="md">
+          Read the full process
+          <ArrowRight />
+        </Button>
       </div>
     </Section>
   );
