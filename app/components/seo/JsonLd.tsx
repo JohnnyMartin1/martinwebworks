@@ -124,7 +124,7 @@ export function OrganizationJsonLd() {
     logo: `${SITE_URL}/opengraph-image`,
     image: `${SITE_URL}/opengraph-image`,
     description:
-      "Conversion-focused websites for service businesses ready to grow. Strategy, design, SEO structure, lead capture, booking flows, and ongoing care — built as a system.",
+      "Conversion-focused websites for service businesses ready to grow. Strategy, design, SEO structure, lead capture, booking flows, and ongoing care. Built as a system.",
     areaServed: { "@type": "Country", name: "United States" },
     contactPoint: [
       {

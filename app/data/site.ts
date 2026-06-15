@@ -3,7 +3,7 @@
 export const SITE = {
   name: "Martin Web Works",
   description:
-    "Conversion-focused websites for service businesses ready to grow. Strategy, design, SEO structure, lead capture, booking flows, and ongoing care — built as a system, not a brochure.",
+    "Conversion-focused websites for service businesses ready to grow. Strategy, design, SEO structure, lead capture, booking flows, and ongoing care. Built as a system, not a brochure.",
   // The studio operates remotely across the US. Arlington is the address of
   // record; we do not lead with geography in marketing copy.
   email: "team@martinwebworks.com",
@@ -92,6 +92,6 @@ export const SHARE_IMAGES = [
     url: "/opengraph-image",
     width: 1200,
     height: 630,
-    alt: `${SITE.name} — Conversion-focused websites for service businesses`,
+    alt: `${SITE.name} · Conversion-focused websites for service businesses`,
   },
 ];
